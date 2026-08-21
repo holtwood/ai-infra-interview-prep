@@ -1,6 +1,20 @@
+---
+week: 2
+title: GEMM、访存、Tiling、共享内存、WMMA
+start: 2026-08-31
+end: 2026-09-06
+hours: 24
+status: upcoming
+---
+
 # 第 2 周：GEMM、访存、Tiling、共享内存、WMMA
 
-> 📅 2026-08-31 ～ 2026-09-06
+## 相关文档
+
+- [INTERVIEW_MATRIX](../INTERVIEW_MATRIX.md) — 本周面试题加入矩阵
+- [SKILL_MATRIX](../SKILL_MATRIX.md) — 能力自评与证据
+- [knowledge-map](../knowledge-map.md) — 主题知识地图
+- [progress-tracker](../progress-tracker.md) — 进度打卡
 
 ## 本周目标
 

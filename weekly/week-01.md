@@ -1,6 +1,24 @@
+---
+week: 1
+title: 基线评估、CUDA 模型、环境与性能工具
+start: 2026-08-24
+end: 2026-08-30
+hours: 24
+status: upcoming
+---
+
 # 第 1 周：基线评估、CUDA 模型、环境与性能工具
 
 > 📅 2026-08-24 ～ 2026-08-30
+
+## 相关文档
+
+- [INTERVIEW_MATRIX](../INTERVIEW_MATRIX.md) — 本周面试题加入矩阵
+- [SKILL_MATRIX](../SKILL_MATRIX.md) — 能力自评与证据
+- [knowledge-map](../knowledge-map.md) — 主题知识地图
+- [progress-tracker](../progress-tracker.md) — 进度打卡
+- [BASELINE](../BASELINE.md) — 能力基线
+- [study-plan](../study-plan.md) — 每周节奏
 
 ## 本周目标
 

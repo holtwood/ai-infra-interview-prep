@@ -1,24 +1,40 @@
+---
+updated: 2026-08-21
+generated_by: scripts/progress.py
+---
+
 # 📊 进度追踪
+
+> 「每周进度」表格由 `make progress-write` 自动更新(日期/主题/完成度来自各周文件 frontmatter 与 checkbox)。
+> 「每日打卡」手动填写。
 
 ## 每周进度
 
 | 周次 | 日期范围 | 主题 | 完成度 | 笔记链接 |
 |------|----------|------|--------|----------|
-| 第 1 周 | - | CUDA 编程基础 | 0% | [笔记](./weekly/week-01.md) |
-| 第 2 周 | - | PyTorch 内部机制 | 0% | [笔记](./weekly/week-02.md) |
-| 第 3 周 | - | GPU 性能优化 | 0% | [笔记](./weekly/week-03.md) |
-| 第 4 周 | - | Flash Attention | 0% | [笔记](./weekly/week-04.md) |
-| 第 5 周 | - | LLM 推理引擎 | 0% | [笔记](./weekly/week-05.md) |
-| 第 6 周 | - | TensorRT-LLM | 0% | [笔记](./weekly/week-06.md) |
-| 第 7 周 | - | Triton 语言 | 0% | [笔记](./weekly/week-07.md) |
-| 第 8 周 | - | ML 编译器 | 0% | [笔记](./weekly/week-08.md) |
-| 第 9 周 | - | FlashInfer | 0% | [笔记](./weekly/week-09.md) |
-| 第 10 周 | - | 个人项目 | 0% | [笔记](./weekly/week-10.md) |
-| 第 11 周 | - | 系统设计 | 0% | [笔记](./weekly/week-11.md) |
-| 第 12 周 | - | 查漏补缺 | 0% | [笔记](./weekly/week-12.md) |
+| 第 1 周 | 2026-08-24 ~ 2026-08-30 | 基线评估、CUDA 模型、环境与性能工具 | 0% | [笔记](./weekly/week-01.md) |
+| 第 2 周 | 2026-08-31 ~ 2026-09-06 | GEMM、访存、Tiling、共享内存、WMMA | 0% | [笔记](./weekly/week-02.md) |
+| 第 3 周 | 2026-09-07 ~ 2026-09-13 | Attention、Online Softmax、FlashAttention | 0% | [笔记](./weekly/week-03.md) |
+| 第 4 周 | 2026-09-14 ~ 2026-09-20 | Triton、PyTorch 自定义算子 | 0% | [笔记](./weekly/week-04.md) |
+| 第 5 周 | 2026-09-21 ~ 2026-09-27 | Transformer 推理、量化、模型加载 | 0% | [笔记](./weekly/week-05.md) |
+| 第 6 周 | 2026-09-28 ~ 2026-10-04 | KV Cache、Decode、CUDA Graph、性能指标 | 0% | [笔记](./weekly/week-06.md) |
+| 第 7 周 | 2026-10-05 ~ 2026-10-11 | Paged KV、Continuous Batching、调度 | 0% | [笔记](./weekly/week-07.md) |
+| 第 8 周 | 2026-10-12 ~ 2026-10-18 | HTTP/SSE、压测、可观测性、Linux 调优 | 0% | [笔记](./weekly/week-08.md) |
+| 第 9 周 | 2026-10-19 ~ 2026-10-25 | NCCL、并行策略、通信/计算重叠 | 0% | [笔记](./weekly/week-09.md) |
+| 第 10 周 | 2026-10-26 ~ 2026-11-01 | 项目证据包、简历项目、GitHub 展示 | 0% | [笔记](./weekly/week-10.md) |
+| 第 11 周 | 2026-11-02 ~ 2026-11-08 | CUDA/C++/系统设计模拟面试 | 0% | [笔记](./weekly/week-11.md) |
+| 第 12 周 | 2026-11-09 ~ 2026-11-15 | 查漏补缺、投递、复盘 | 0% | [笔记](./weekly/week-12.md) |
 
 ## 每日打卡
 
 | 日期 | 学习内容 | 时间 | 收获 | 问题 |
 |------|----------|------|------|------|
 | - | - | - | - | - |
+
+## 周复盘存档
+
+> 每周复盘写入 [weekly-review.md](weekly-review.md);完成后在此链接存档。
+
+| 周次 | 复盘状态 | 链接 |
+|------|----------|------|
+| - | - | - |

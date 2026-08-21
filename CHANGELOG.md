@@ -2,7 +2,31 @@
 
 遵循 [Keep a Changelog](https://keepachangelog.com/) 格式。
 
-## [Unreleased] — 2026-08-19
+## [Unreleased] — 2026-08-21
+
+### Added
+
+- `scripts/` 目录（Python 3，零外部依赖）：
+  - `check_links.py`：Markdown 链接健康检查（相对链接 + 锚点；`--online` 可查外部链接）。
+  - `verify_plan.py`：计划一致性校验（TOPIC_WEIGHTS 288h/100%、12 周 frontmatter 完整、日期每周 7 天连续、枚举合法）。
+  - `progress.py`：解析 weekly checkbox 汇总完成度，写回 progress-tracker / frontmatter status / README 状态列。
+- `Makefile`：统一入口（`make check` / `verify` / `progress` / `progress-write`）。
+- `AGENTS.md`：AI 代理操作指南（仓库地图、约定、命令），遵循 GitHub AGENTS.md 规范。
+- `llms.txt`：LLM 可读文档索引，遵循 llmstxt.org 规范（H1 + blockquote + H2 分段）。
+- `INDEX.md`：全仓文档按「规划 / 执行 / 追踪 / 参考」归档索引。
+- `weekly-review.md`：集中式周复盘模板（完成/时间预算/原因/收获/下周调整/自评）。
+
+### Changed
+
+- 全部 `weekly/week-01..12.md`：新增 YAML frontmatter（week/title/start/end/hours/status）与
+  「相关文档」交叉引用；修正 week-06..12 日期行缺年份。
+- `README.md`：文档地图加分类列；新增「每周状态」表（⬜/🔄/✅，由脚本自动更新）；
+  「快速开始」升级为「执行入口」（周一启动 → 执行 → 周日复盘）。
+- `progress-tracker.md`：结构化（YAML frontmatter + 每周进度表自动更新 + 周复盘存档表），
+  主题与周文件标题对齐。
+- 执行闭环：勾选 `- [x]` 后运行 `make progress-write`，自动更新完成度、frontmatter status 与 README 状态。
+
+## [2026-08-19]
 
 ### Added
 

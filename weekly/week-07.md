@@ -1,6 +1,20 @@
+---
+week: 7
+title: Paged KV、Continuous Batching、调度
+start: 2026-10-05
+end: 2026-10-11
+hours: 24
+status: upcoming
+---
+
 # 第 7 周：Paged KV、Continuous Batching、调度
 
-> 📅 2026-10-05 ～ 10-11
+## 相关文档
+
+- [INTERVIEW_MATRIX](../INTERVIEW_MATRIX.md) — 本周面试题加入矩阵
+- [SKILL_MATRIX](../SKILL_MATRIX.md) — 能力自评与证据
+- [knowledge-map](../knowledge-map.md) — 主题知识地图
+- [progress-tracker](../progress-tracker.md) — 进度打卡
 
 ## 本周目标
 

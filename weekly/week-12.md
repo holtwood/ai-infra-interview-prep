@@ -1,6 +1,22 @@
+---
+week: 12
+title: 查漏补缺、投递、复盘
+start: 2026-11-09
+end: 2026-11-15
+hours: 24
+status: upcoming
+---
+
 # 第 12 周：查漏补缺、投递、复盘
 
-> 📅 2026-11-09 ～ 11-15
+## 相关文档
+
+- [INTERVIEW_MATRIX](../INTERVIEW_MATRIX.md) — 本周面试题加入矩阵
+- [SKILL_MATRIX](../SKILL_MATRIX.md) — 能力自评与证据
+- [knowledge-map](../knowledge-map.md) — 主题知识地图
+- [progress-tracker](../progress-tracker.md) — 进度打卡
+- [APPLICATION_PLAN](../APPLICATION_PLAN.md) — 简历与投递规则
+- [weekly-review](../weekly-review.md) — 周复盘模板
 
 ## 本周目标
 

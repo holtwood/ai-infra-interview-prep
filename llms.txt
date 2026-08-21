@@ -1,0 +1,49 @@
+# AI Infra Interview Prep
+
+> 12 周 AI Infra 转行准备:目标岗位、能力矩阵、周计划、面试与求职执行。
+> 本文件遵循 llmstxt.org 规范,供 LLM 推理引擎索引。链接为仓库内相对路径(私有仓库);
+> 如需完整内容请直接读取目标文件。人类读者请看 [INDEX.md](INDEX.md)。
+
+## 入口
+- [README](README.md): 仓库唯一入口,定位、文档地图、执行入口
+- [INDEX](INDEX.md): 全仓文档四类归档索引
+- [AGENTS](AGENTS.md): AI 代理操作指南(仓库地图/约定/命令)
+
+## 规划
+- [TARGET_ROLES](TARGET_ROLES.md): 主/次/可选岗位方向与边界
+- [JOB_MARKET_EVIDENCE](JOB_MARKET_EVIDENCE.md): 2026-08-19 采样 23 个岗位与技能频次
+- [BASELINE](BASELINE.md): 已有优势与真实短板
+- [SKILL_MATRIX](SKILL_MATRIX.md): 能力等级、证据、差距行动
+- [TOPIC_WEIGHTS](TOPIC_WEIGHTS.md): 288h 时间权重表与三档缩放
+- [ROADMAP](ROADMAP.md): 12 周主线与每周必须交付
+- [PROJECT_STRATEGY](PROJECT_STRATEGY.md): 已定项目组合
+- [study-plan](study-plan.md): 每周节奏与执行方法
+
+## 执行(每周计划)
+- [第 1 周](weekly/week-01.md): 基线评估、CUDA 模型、环境与性能工具(2026-08-24~08-30)
+- [第 2 周](weekly/week-02.md): GEMM、访存、Tiling、共享内存、WMMA(08-31~09-06)
+- [第 3 周](weekly/week-03.md): Attention、Online Softmax、FlashAttention(09-07~09-13)
+- [第 4 周](weekly/week-04.md): Triton、PyTorch 自定义算子(09-14~09-20)
+- [第 5 周](weekly/week-05.md): Transformer 推理、量化、模型加载(09-21~09-27)
+- [第 6 周](weekly/week-06.md): KV Cache、Decode、CUDA Graph、性能指标(09-28~10-04)
+- [第 7 周](weekly/week-07.md): Paged KV、Continuous Batching、调度(10-05~10-11)
+- [第 8 周](weekly/week-08.md): HTTP/SSE、压测、可观测性、Linux 调优(10-12~10-18)
+- [第 9 周](weekly/week-09.md): NCCL、并行策略、通信/计算重叠(10-19~10-25)
+- [第 10 周](weekly/week-10.md): 项目证据包、简历项目、GitHub 展示(10-26~11-01)
+- [第 11 周](weekly/week-11.md): CUDA/C++/系统设计模拟面试(11-02~11-08)
+- [第 12 周](weekly/week-12.md): 查漏补缺、投递、复盘(11-09~11-15)
+
+## 追踪
+- [progress-tracker](progress-tracker.md): 每周进度表格 + 每日打卡
+- [weekly-review](weekly-review.md): 集中式周复盘模板
+
+## 面试与求职
+- [INTERVIEW_MATRIX](INTERVIEW_MATRIX.md): 面试题五要素矩阵
+- [APPLICATION_PLAN](APPLICATION_PLAN.md): 简历版本、投递节奏、迭代规则
+
+## 参考
+- [knowledge-map](knowledge-map.md): 主题知识地图
+- [resources](resources.md): 学习资源与 deep-dive 链接
+- [interview-prep](interview-prep.md): 面试准备主题索引
+- [learning-path](learning-path.md): 学习路径概览
+- [CHANGELOG](CHANGELOG.md): 变更记录

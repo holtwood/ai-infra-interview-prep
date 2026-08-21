@@ -1,6 +1,20 @@
+---
+week: 4
+title: Triton、PyTorch 自定义算子
+start: 2026-09-14
+end: 2026-09-20
+hours: 24
+status: upcoming
+---
+
 # 第 4 周：Triton、PyTorch 自定义算子
 
-> 📅 2026-09-14 ～ 2026-09-20
+## 相关文档
+
+- [INTERVIEW_MATRIX](../INTERVIEW_MATRIX.md) — 本周面试题加入矩阵
+- [SKILL_MATRIX](../SKILL_MATRIX.md) — 能力自评与证据
+- [knowledge-map](../knowledge-map.md) — 主题知识地图
+- [progress-tracker](../progress-tracker.md) — 进度打卡
 
 ## 本周目标
 
