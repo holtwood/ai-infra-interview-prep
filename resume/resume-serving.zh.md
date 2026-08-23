@@ -47,10 +47,12 @@ PagedAttention 分页 KV + continuous batching + OpenAI 兼容 API；经 C ABI �
 CUDA 原生推理引擎：GGUF 解析 → W8A16 重量化 → 分页 KV → token 流式；导出 C ABI v2 供上层控制面调用。
 
 1. 一条命令从 GGUF 跑通真实 Qwen2.5-0.5B Instruct 生成。→ E10
-2. 转置 M==1 GEMM 消除非合并访存：历史 schema v1 配对估计 TPOT
-   24.348→6.087 ms；相对 llama.cpp 的 1.65× 是 W8A16 vs Q4_K_M 非同量化参考，
-   schema v2 clean rerun 后再用于正式投递。→ E15
-3. CUDA Graphs 默认捕获 decode 重放；graphs on/off greedy 输出逐 token 一致。→ E16
+2. clean commit `565da79` 的 CUDA Graph 五组配对 A/B 中，TPOT
+   8.322→5.225 ms/token（-37.2%），decode 吞吐 120.168→191.384 tok/s（+59.3%）；
+   10 个进程原始 JSONL与完整边界
+   [可复现](https://github.com/open-infra-ai/tiny-llm/blob/master/docs/performance/results/2026-08-23-cuda-graphs-ab.md)。→ E15/E16
+3. Graphs on/off greedy 输出逐 token 一致；TTFT 配对波动不作改善声明，相对 llama.cpp
+   的历史数据因 W8A16 vs Q4_K_M 非同量化只作外部参考。→ E16
 4. tokenizer 与 HuggingFace 逐 id 差分对齐：30 例共 417 token。→ E11
 
 ### cuda-foundations / triton-fused-ops / cuflash-attn —— 基础层（合并为一行）
@@ -73,7 +75,7 @@ CUDA SGEMM naive→WMMA 阶梯 0.58→1.09 TFLOPS，负优化留表不隐藏（E
 
 ---
 
-**注**：本页性能数字来自 RTX 3060 Laptop 6GB 实测归档；2026-08-23 当前验证为
-tiny-llm 193 项、paged-infer 默认 232 项测试通过。测试数量不是性能结论；“非同量化”、
-“CPU 参考后端”和负结果等限制必须保留。6.087ms 是历史 clean schema v1 配对估计，
-必须用 schema v2 clean commit 重跑后再定稿。【】处未填写前不可投递。
+**注**：本页性能数字来自 RTX 3060 Laptop 6GB、clean commit `565da79` 的 schema v2
+CUDA Graph A/B；2026-08-23 当前验证为 tiny-llm 193 项、paged-infer 默认 232 项测试通过。
+测试数量不是性能结论；“非同量化”、“CPU 参考后端”和负结果等限制必须保留。
+【】处未填写前不可投递。

@@ -14,6 +14,16 @@
 - 技术仓名称已被简历与证据链接引用，保持冻结。`paged-infer` 对“分页 KV + 推理控制面”
   的表达足够准确，不为追求听起来更大而重命名。
 
+### 命名结论
+
+- `cuflash-attn` 并不奇怪：slug 直接表达 CUDA + FlashAttention，搜索语义明确；
+  README 展示名使用更易读的 **CuFlash-Attn**。只有项目离开 Attention 边界时才需要改名。
+- `triton-fused-ops` 相对通用，但与 RMSNorm+RoPE、Gated MLP、FlashAttention 和
+  `torch.library` 的横向对照职责一致；README 首屏用“Transformer 推理融合算子”收紧
+  语义即可。若只剩单一算子或演变为完整 compiler/runtime，才重新评估 slug。
+- 重命名的收益目前小于迁移成本：会打断简历、benchmark、Pages、badge、release、PyPI
+  包名和上游引用。专业化优先靠清晰边界、可信数据和持续维护，不靠频繁换名。
+
 ## 项目 1：旗舰 = `tiny-llm`
 
 **一句话**：CUDA 原生 C++ 推理运行时，从 GGUF 权重、W8A16、tokenizer、KV Cache 到
@@ -25,8 +35,13 @@ CUDA Graph、真实模型正确性和端到端指标；优化前后能落到同�
 
 **当前证据快照**：
 
-- 转置 M==1 GEMM 后，历史 clean commit 的 schema v1 配对估计 TPOT 从 24.348 降至
-  6.087 ms/token；该数字用于说明优化沿革，投递前必须在 clean commit 用 schema v2 重跑；
+- clean commit `565da79` 的 schema v2 五组交错配对 A/B 中，CUDA Graph off→on 的
+  TPOT 跨进程中位数 8.322→5.225 ms/token（-37.2%），decode 吞吐
+  120.168→191.384 tok/s（+59.3%）；10 个进程原始 JSONL、机器可读聚合和模型哈希
+  [已归档](https://github.com/open-infra-ai/tiny-llm/blob/master/docs/performance/results/2026-08-23-cuda-graphs-ab.md)；
+- TTFT 配对变化范围 -8.5%～+14.6%，两种聚合方向不一致，故不宣传 TTFT 改善；
+- 转置 M==1 GEMM 的历史 schema v1 与 microbenchmark 只用于说明优化沿革，不和上述
+  schema v2 Graph 消融混算；
 - 与 llama.cpp 的 1.65× 差距是 W8A16 vs Q4_K_M 的非同量化对照，只能作为外部参考，
   不能宣传为公平加速比；
 - CUDA Graph 默认启用且 on/off greedy token 一致；
@@ -35,9 +50,10 @@ CUDA Graph、真实模型正确性和端到端指标；优化前后能落到同�
 
 **下一阶段只补证据，不盲加功能**：
 
-1. 固定 current HEAD、模型、prompt、输出长度、功耗与时钟，重跑 ≥5 次，报告中位数和
-   min/max 或置信区间；
-2. 做可归因消融：转置快路径 on/off、CUDA Graph on/off、连续 KV/分页 KV；每次只改一个因素；
+1. 已完成 CUDA Graph clean-commit 五组配对消融；下一步补转置快路径 on/off 与
+   连续 KV/分页 KV，每次只改一个因素；
+2. 扩展 prompt 长度、输出长度与 batch 矩阵，继续使用 ≥5 个独立进程、交错顺序和
+   中位数/范围，不挑最好一次；
 3. 用 Nsight Systems 拆 prefill/decode 时间线，用 Nsight Compute 锁定 lm_head、attention、
    dequant 的吞吐、stall 与 occupancy；
 4. 画 prompt 长度 × 输出长度 × batch 的 TTFT、TPOT、tok/s、显存曲线；若声称峰值，

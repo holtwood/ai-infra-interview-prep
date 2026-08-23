@@ -40,7 +40,8 @@
 - `APPLICATION_PLAN.md`、`BASELINE.md`、`SKILL_MATRIX.md` 与 W6/W8/W10–W12 计划：
   更新当前证据、评测口径、简历版本、社区时段和单卡/多卡诚实边界。
 - `tiny-llm` 的历史 schema v1 TPOT 明确标为“跨请求估算”，不得与 schema v2
-  同表汇总；简历投递前必须在 clean commit 上按 schema v2 重跑正式数据。
+  同表汇总；现已在 clean commit `565da79` 完成 schema v2 五组配对 CUDA Graph A/B，
+  两版简历同步引用 TPOT -37.2%、decode 吞吐 +59.3% 及原始 JSONL，并保留 TTFT 噪声边界。
 - 全仓个人账号链接由已重定向的 `LessUp` 更新为当前 `holtwood`；删除已退出使用的
   `open-infra-ai/aicl-lab` 活跃入口。
 - `community/README.md`：建立 llama.cpp → vLLM/GuideLLM → FlashInfer → SGLang

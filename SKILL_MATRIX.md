@@ -13,7 +13,7 @@
 | PyTorch 自定义算子 / torch.compile | 2 | 3 | torch.library 注册已做 → extension-cpp + inductor 实验 | W4 |
 | LLM 推理全链路（加载/量化/decode） | 3 | 4 | tiny-llm → 端到端指标拆解 | W5–W6 |
 | KV Cache / PagedAttention / 调度 | 3 | 4 | paged-infer → 状态机与不变量讲解 | W6–W7 |
-| CUDA Graph | 3 | 4 | tiny-llm 已实现且 on/off token 一致 → current HEAD A/B + timeline 归因 | W6 |
+| CUDA Graph | 4 | 4 | tiny-llm on/off token 一致 + clean commit 五组配对 A/B（原始 JSONL）→ 云 GPU timeline/计数器补充因果归因 | W6 |
 | Serving 压测与可观测性 | 2 | 3 | paged-infer 已有正确 loadgen → 真实 CUDA 后端 TTFT/TPOT/p99 报告 | W8 |
 | Linux 性能分析 | 2 | 3 | 零散 → perf/火焰图实验 | W8 |
 | NCCL/并行策略/通信重叠 | 1 | 2（理论） | 无实验条件 → 理论+源码+模拟，明确标注 | W9 |

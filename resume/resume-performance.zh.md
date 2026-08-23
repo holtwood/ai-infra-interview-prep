@@ -31,10 +31,12 @@
 并导出 C ABI 供 Serving 控制面使用。
 
 1. 为 decode 的 M==1 GEMM 增加转置权重快路径，lm_head microbenchmark
-   10.0002→0.9794 ms；历史 schema v1 配对估计 TPOT 24.348→6.087 ms/token，
-   schema v2 clean rerun 后再作为正式简历数字。→ E15
-2. CUDA Graph 默认捕获 decode device path，graphs on/off greedy 输出逐 token 一致；捕获失败
-   显式回退，不把正确性让给性能路径。→ E16
+   10.0002→0.9794 ms；该 microbenchmark 与端到端指标分开报告，不把局部加速比冒充整体收益。→ E15
+2. 在 clean commit `565da79` 上完成 CUDA Graph 五组交错配对 A/B：TPOT
+   8.322→5.225 ms/token（-37.2%），decode 吞吐 120.168→191.384 tok/s（+59.3%）；
+   10 个进程原始 JSONL、模型哈希和限制
+   [可复现](https://github.com/open-infra-ai/tiny-llm/blob/master/docs/performance/results/2026-08-23-cuda-graphs-ab.md)，
+   on/off greedy 输出逐 token 一致；TTFT 波动不作改善声明。→ E16
 3. 真实 Qwen2.5-0.5B-Instruct 一条命令生成；tokenizer 与 HuggingFace 30 例、417 token
    逐 id 对齐；2026-08-23 当前 193 项测试通过。→ E10/E11
 
@@ -71,6 +73,6 @@ Paged KV + continuous batching 控制面经 C ABI 接入 tiny-llm；属性测试
 - **推理运行时**：GGUF、W8A16、KV Cache、decode、tokenizer、C ABI/FFI。
 - **语言/工程**：C++17/23、Python/Triton、Rust；CMake、CI、Sanitizer、属性测试。
 
-**注**：性能数字来自 RTX 3060 Laptop 6GB 的具名归档；测试数量是当前验证快照，不等价于
-性能或生产成熟度。6.087ms 是历史 schema v1 配对估计；正式投递前必须使用 schema v2
-clean commit 重跑并更新本页。【】处必须由本人填写真实信息，未填写前不可投递。
+**注**：性能数字来自 RTX 3060 Laptop 6GB、clean commit `565da79` 的 schema v2
+CUDA Graph A/B，不等价于整体推理或生产成熟度；历史 schema v1 不与之混算。
+【】处必须由本人填写真实信息，未填写前不可投递。
