@@ -14,6 +14,7 @@
 | [TOPIC_WEIGHTS.md](TOPIC_WEIGHTS.md) | 288h 时间权重 + 三档缩放 | 调时间分配(改后跑 `make verify`) |
 | [ROADMAP.md](ROADMAP.md) | 12 周主线与每周必须交付 | 宏观规划 |
 | [PROJECT_STRATEGY.md](PROJECT_STRATEGY.md) | 已定项目组合 | 项目相关工作 |
+| [CLOUD_GPU_PLAYBOOK.md](CLOUD_GPU_PLAYBOOK.md) | 云 GPU 选型、预算、实验闭环与评测矩阵 | 采购/租用云算力前 |
 | [study-plan.md](study-plan.md) | 每周节奏与执行方法 | 安排当周节奏 |
 
 ## 执行(每周计划)
@@ -48,6 +49,9 @@
 |------|------|--------|
 | [INTERVIEW_MATRIX.md](INTERVIEW_MATRIX.md) | 面试题五要素矩阵 | 准备/复盘面试题 |
 | [APPLICATION_PLAN.md](APPLICATION_PLAN.md) | 简历版本、投递节奏、迭代规则 | 投递阶段 |
+| [resume/](resume/) | 公开脱敏简历与本地副本规则 | 改简历时 |
+| [applications/](applications/) | 目标公司与投递追踪模板 | 投递和每周复盘 |
+| [community/](community/) | 上游 issue 筛选、复现与贡献证据 | 每周社区时段 |
 
 ## 参考(知识索引与资源)
 

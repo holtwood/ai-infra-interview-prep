@@ -18,7 +18,8 @@ status: upcoming
 
 ## 本周目标
 
-建立推理性能指标体系（TTFT/TPOT/吞吐/显存/尾延迟），补 CUDA Graph 对照实验。
+建立推理性能指标体系（TTFT/TPOT/吞吐/显存/尾延迟），在 current HEAD 上重跑
+CUDA Graph 可归因对照实验。
 
 ## 先修知识
 
@@ -37,13 +38,14 @@ W5 的 decode 循环。
 ## 动手实验
 
 1. 在 tiny-llm 上测量：序列长度 vs TPOT 曲线、KV 显存占用曲线。
-2. CUDA Graph 实验：捕获 decode 单步图，对比 eager 模式 launch 开销（本机小模型可做）。
+2. CUDA Graph 实验：同一 commit、模型、prompt 与输出长度下做 on/off ≥5 次 A/B，
+   用 nsys 时间线确认差异来自 launch 开销，而不只比较一个总耗时。
 3. 用统一口径计算并记录 TTFT（首次 token）与稳态 TPOT。
 
 ## 可验证交付物
 
 - [ ] 指标报告：TTFT/TPOT/吞吐/显存，全部带口径
-- [ ] CUDA Graph 对照实验记录
+- [ ] CUDA Graph current HEAD A/B 记录（原始输出 + nsys 时间线）
 - [ ] SKILL_MATRIX 中期重评（附证据）
 - [ ] INTERVIEW_MATRIX Q4 补量化数字口径
 

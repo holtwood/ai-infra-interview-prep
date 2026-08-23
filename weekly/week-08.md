@@ -26,7 +26,7 @@ W7 的调度；Linux 基础。
 
 ## 时间预算
 
-24h：压测设计与执行 10h · 可观测性改造 4h · Linux perf 实验 4h · C++/算法 2h · 复盘 4h。
+24h：压测设计与执行 12h · 可观测性核验 2h · Linux perf/nsys 实验 4h · C++/算法 2h · 复盘 4h。
 
 ## 阅读范围
 
@@ -36,13 +36,16 @@ W7 的调度；Linux 基础。
 
 ## 动手实验
 
-1. 压测设计：固定 prompt 长度 × 并发数矩阵（1/2/4/8/16），测 TTFT 分布、TPOT、吞吐、p50/p99。
-2. 用 perf + 火焰图定位 paged-infer 服务端热点（本机可做）。
-3. 加最小可观测性：请求级耗时日志与 Prometheus 风格计数器（只加指标，不加新功能）。
+1. 使用仓库现有 serving harness：固定数据集、模型、commit、采样与输出上限，分别跑
+   closed-loop 并发阶梯和 Poisson 到达率阶梯；每档 ≥5 次，直到触发 SLO 拐点或显存上限。
+2. 真实 tiny-llm 后端报告 TTFT、TPOT、吞吐、失败率、token 计数覆盖率和峰值显存；
+   CPU 参考后端只做协议 smoke，不进入性能结论。
+3. 用 perf/火焰图定位 Rust/HTTP 热点，用 nsys 定位 GPU 时间线；核验 Prometheus 指标与
+   `summary.json` 是否一致，不为了“看起来完整”重复加指标。
 
 ## 可验证交付物
 
-- [ ] 压测报告：并发-吞吐-延迟曲线 + 容量拐点分析（口径齐全）
+- [ ] 压测报告：并发/到达率-吞吐-尾延迟曲线 + 容量拐点（含原始 `summary.json`）
 - [ ] 火焰图 + 热点分析
 - [ ] INTERVIEW_MATRIX Q5 达 B 级以上
 

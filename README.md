@@ -5,11 +5,16 @@
 
 ## 定位与职责边界
 
-- 本仓库：转行计划、学习 TODO、能力矩阵、项目策略、面试与投递执行。
-- 仓库盘点/分类/深读：[github-repos-hub](https://github.com/LessUp/github-repos-hub)
+- 本仓库（公开）：转行计划、学习 TODO、能力矩阵、项目策略、脱敏简历、面试与
+  求职执行模板。真实联系方式、联系人、薪资与投递状态只写入 Git 忽略的 `.local` 文件。
+- 仓库盘点/分类/深读：[github-repos-hub](https://github.com/holtwood/github-repos-hub)
   （deep-dives 唯一事实来源，本仓库不再保留副本）。
-- 技术证据与项目讲述：[open-infra-ai/aicl-lab](https://github.com/open-infra-ai/aicl-lab)。
-- Star 资源：[stars-index](https://github.com/LessUp/stars-index)。
+- 技术作品、状态注册表与跨仓契约：
+  [open-infra-ai/open-infra-ai](https://github.com/open-infra-ai/open-infra-ai)。
+- 技术仓只放可运行作品；本仓只放个人执行材料，边界以
+  [组织仓说明](https://github.com/open-infra-ai/open-infra-ai/blob/master/docs/repository-boundaries.md)
+  为准。
+- Star 资源：[stars-index](https://github.com/holtwood/stars-index)。
 
 ## 文档地图
 
@@ -24,12 +29,16 @@
 | 规划 | [TOPIC_WEIGHTS.md](TOPIC_WEIGHTS.md) | 时间权重（合计 288h，可核对）与三档缩放 |
 | 规划 | [ROADMAP.md](ROADMAP.md) | 12 周主线与每周必须交付 |
 | 规划 | [PROJECT_STRATEGY.md](PROJECT_STRATEGY.md) | 已定项目（推理系统 / Kernel / C++ 辅助） |
+| 规划 | [CLOUD_GPU_PLAYBOOK.md](CLOUD_GPU_PLAYBOOK.md) | 云 GPU 选型、预算、实验闭环与评测矩阵 |
 | 执行 | [weekly/](weekly/) | 逐周计划（状态见下表） |
 | 执行 | [study-plan.md](study-plan.md) | 每周节奏与执行方法 |
 | 追踪 | [progress-tracker.md](progress-tracker.md) | 进度打卡（每周进度 + 每日打卡） |
 | 追踪 | [weekly-review.md](weekly-review.md) | 集中式周复盘模板 |
 | 面试 | [INTERVIEW_MATRIX.md](INTERVIEW_MATRIX.md) | 面试题五要素矩阵 |
 | 面试 | [APPLICATION_PLAN.md](APPLICATION_PLAN.md) | 简历版本、投递节奏、迭代规则 |
+| 求职 | [resume/](resume/) | 公开脱敏简历；真实信息用本地忽略副本 |
+| 求职 | [applications/](applications/) | 目标公司清单与投递追踪模板 |
+| 社区 | [community/](community/) | issue 筛选、最小复现与上游贡献记录 |
 | 参考 | [knowledge-map.md](knowledge-map.md) / [resources.md](resources.md) / [interview-prep.md](interview-prep.md) | 主题知识索引与资源 |
 
 ## 每周状态
@@ -79,8 +88,10 @@ make progress-write # 统计并写回 progress-tracker / frontmatter / README �
 ## 核心事实（2026-08-19 审计）
 
 - 目标：GPU Kernel / LLM Inference Performance Engineer（主）、Serving（次）、编译器（可选）。
-- 项目已定：tiny-llm + paged-infer（推理）、cuda-foundations + cuflash-attn + triton-fused-ops（Kernel）、
-  fq-compressor（C++ 辅助）。**没有"待定"项目，不新建仓库。**
+- 推理加速面试旗舰是 **tiny-llm**；`cuflash-attn` 证明 kernel 深度，`paged-infer`
+  证明 serving/调度能力，另外两仓提供基础与 Triton 对照。
+- 项目已定，不再为单个优化点拆出重复玩具仓；新想法先进入现有仓的实验、benchmark
+  或上游 issue/PR。详见 [PROJECT_STRATEGY.md](PROJECT_STRATEGY.md)。
 - P2 大仓（vllm/sglang/TensorRT-LLM/triton/flashinfer/flash-attention/LightLLM）只做
   "五个一"目标导向阅读，不做全仓通读。
 - 多 GPU 相关内容一律标注理论学习，不伪造实验数据。

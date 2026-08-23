@@ -1,7 +1,7 @@
 # AI Infra Interview Prep
 
 > 12 周 AI Infra 转行准备:目标岗位、能力矩阵、周计划、面试与求职执行。
-> 本文件遵循 llmstxt.org 规范,供 LLM 推理引擎索引。链接为仓库内相对路径(私有仓库);
+> 本文件遵循 llmstxt.org 规范,供 LLM 推理引擎索引。链接为公开仓库内相对路径;
 > 如需完整内容请直接读取目标文件。人类读者请看 [INDEX.md](INDEX.md)。
 
 ## 入口
@@ -17,6 +17,7 @@
 - [TOPIC_WEIGHTS](TOPIC_WEIGHTS.md): 288h 时间权重表与三档缩放
 - [ROADMAP](ROADMAP.md): 12 周主线与每周必须交付
 - [PROJECT_STRATEGY](PROJECT_STRATEGY.md): 已定项目组合
+- [CLOUD_GPU_PLAYBOOK](CLOUD_GPU_PLAYBOOK.md): 云 GPU 选型、预算、实验闭环与评测矩阵
 - [study-plan](study-plan.md): 每周节奏与执行方法
 
 ## 执行(每周计划)
@@ -40,6 +41,9 @@
 ## 面试与求职
 - [INTERVIEW_MATRIX](INTERVIEW_MATRIX.md): 面试题五要素矩阵
 - [APPLICATION_PLAN](APPLICATION_PLAN.md): 简历版本、投递节奏、迭代规则
+- [公开简历](resume/): 脱敏简历与本地副本规则
+- [投递执行](applications/): 目标公司清单与投递追踪模板
+- [社区贡献](community/): issue 筛选、最小复现与上游贡献记录
 
 ## 参考
 - [knowledge-map](knowledge-map.md): 主题知识地图

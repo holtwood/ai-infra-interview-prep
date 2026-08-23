@@ -5,7 +5,7 @@
 - 目标岗位与边界：[TARGET_ROLES.md](TARGET_ROLES.md)
 - 时间预算：[TOPIC_WEIGHTS.md](TOPIC_WEIGHTS.md)（默认 24h/周，另附 12h/18h 缩放档）
 - 项目选择：[PROJECT_STRATEGY.md](PROJECT_STRATEGY.md)（已定，无"待定"）
-- 仓库导航与深读：[github-repos-hub](https://github.com/LessUp/github-repos-hub)
+- 仓库导航与深读：[github-repos-hub](https://github.com/holtwood/github-repos-hub)
 - 逐周文件：[weekly/](weekly/)，进度：[progress-tracker.md](progress-tracker.md)
 
 | 周 | 日期 | 核心主题 | 必须交付 |

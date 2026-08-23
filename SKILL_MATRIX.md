@@ -1,6 +1,6 @@
 # 能力矩阵（SKILL_MATRIX）
 
-更新日期：2026-08-19。等级：1 了解 / 2 能用 / 3 能独立完成并解释原理 / 4 能优化并给出量化证据 / 5 能设计并教学。
+更新日期：2026-08-23。等级：1 了解 / 2 能用 / 3 能独立完成并解释原理 / 4 能优化并给出量化证据 / 5 能设计并教学。
 当前等级依据 [BASELINE.md](BASELINE.md)；目标等级依据 [JOB_MARKET_EVIDENCE.md](JOB_MARKET_EVIDENCE.md) 的岗位频次。
 
 | 能力 | 当前 | 目标（12 周末） | 证据（现有 → 计划） | 差距行动 |
@@ -13,8 +13,8 @@
 | PyTorch 自定义算子 / torch.compile | 2 | 3 | torch.library 注册已做 → extension-cpp + inductor 实验 | W4 |
 | LLM 推理全链路（加载/量化/decode） | 3 | 4 | tiny-llm → 端到端指标拆解 | W5–W6 |
 | KV Cache / PagedAttention / 调度 | 3 | 4 | paged-infer → 状态机与不变量讲解 | W6–W7 |
-| CUDA Graph | 2 | 3 | 未系统使用 → tiny-llm 实验或对照实验 | W6 |
-| Serving 压测与可观测性 | 1.5 | 3 | 无系统报告 → paged-infer 压测报告（TTFT/TPOT/p99） | W8 |
+| CUDA Graph | 3 | 4 | tiny-llm 已实现且 on/off token 一致 → current HEAD A/B + timeline 归因 | W6 |
+| Serving 压测与可观测性 | 2 | 3 | paged-infer 已有正确 loadgen → 真实 CUDA 后端 TTFT/TPOT/p99 报告 | W8 |
 | Linux 性能分析 | 2 | 3 | 零散 → perf/火焰图实验 | W8 |
 | NCCL/并行策略/通信重叠 | 1 | 2（理论） | 无实验条件 → 理论+源码+模拟，明确标注 | W9 |
 | C++/并发/算法 | 3 | 3.5 | fq-compressor → 限时练习维持 | 每周 8% |

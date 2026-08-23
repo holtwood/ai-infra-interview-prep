@@ -1,45 +1,97 @@
 # 项目策略（PROJECT_STRATEGY）
 
-更新日期：2026-08-19。**不再新建项目，不再有"待定"。** 全部选用已冻结、
-有测试与 benchmark 的现有仓库（盘点见 [github-repos-hub](https://github.com/LessUp/github-repos-hub)）。
+更新日期：2026-08-23。现有五个技术仓已经覆盖 CUDA 基础、Triton、Attention、
+推理运行时和 Serving 控制面。接下来不靠增加仓库数量，而靠主项目深度、统一评测和上游贡献
+提高求职信号。
 
-## 项目 1：推理系统主项目 = open-infra-ai/tiny-llm + paged-infer
+## 核心决策
 
-- **一句话**：从 GGUF 权重加载到 W8A16 量化推理、分页 KV Cache 与 continuous
-  batching 调度、HTTP serving 的端到端推理系统（C++ + Rust）。
-- **展示能力**：模型加载与量化、KV Cache 内存管理、调度状态机、端到端验证方法论。
-- **关键证据**（口径详见各仓 README 与 aicl-lab 证据包）：
-  - tiny-llm：W8A16 端到端可用，TPOT ≈ 6.1 ms/token（本机实测），170 tests，
-    分页 KV 与连续 KV 逐 token 差分一致。
-  - paged-infer：3 并发分页请求 e2e 与 llama.cpp greedy 对齐（量化差异诚实记录）。
-- **12 周内增量**（证据补强，不加新功能）：W6 补 CUDA Graph 对照实验；
-  W8 补系统压测报告（TTFT/TPOT/吞吐/p99 尾延迟、容量曲线）。
+- **推理加速旗舰：`open-infra-ai/tiny-llm`**。
+- **Kernel 深挖：`open-infra-ai/cuflash-attn`**。
+- **Serving/调度扩展：`open-infra-ai/paged-infer`**。
+- `cuda-foundations` 与 `triton-fused-ops` 是基础和横向对照，`fq-compressor` 只证明
+  C++/并发/工程质量。
+- 技术仓名称已被简历与证据链接引用，保持冻结。`paged-infer` 对“分页 KV + 推理控制面”
+  的表达足够准确，不为追求听起来更大而重命名。
 
-## 项目 2：Kernel 主项目 = open-infra-ai/cuda-foundations + cuflash-attn + triton-fused-ops
+## 项目 1：旗舰 = `tiny-llm`
 
-- **一句话**：同一批核心算子（SGEMM、RMSNorm+RoPE、SwiGLU、FlashAttention）的
-  CUDA 与 Triton 双实现，含 WMMA、差分测试、benchmark 与 torch.library 集成。
-- **展示能力**：CUDA/Triton 编程、算法理解（online softmax、量化）、
-  工程化验证（差分测试）、性能对比方法论。
-- **关键证据**：cuflash-attn 前后向 FP32/FP16/BF16 + WMMA + 越界修复回归测试；
-  triton-fused-ops 与 vLLM/SGLang 相同的 custom op 接入模式。
-- **12 周内增量**：W2–W4 补 Nsight Compute 的量化分析报告（当前最大缺口是
-  profiling 证据，不是新 kernel）。
+**一句话**：CUDA 原生 C++ 推理运行时，从 GGUF 权重、W8A16、tokenizer、KV Cache 到
+decode 与 C ABI，能在真实 Qwen2.5-0.5B 模型上端到端生成。
 
-## 项目 3：C++ 工程质量辅助 = open-genomics/fq-compressor
+**为什么它最适合推理加速面试**：它同时允许讲计算热点、内存布局、量化、kernel launch、
+CUDA Graph、真实模型正确性和端到端指标；优化前后能落到同一条 decode 链路，而不是只展示
+孤立 microbenchmark。
 
-- **一句话**：C++23 高性能 FASTQ 压缩（3.97x 压缩比、O(1) 随机访问、oneTBB 并发
-  流水线、CI + Sanitizer）。
-- **用途**：证明 C++/并发/工程质量；面试谈内存布局、流水线与测试文化。
+**当前证据快照**：
 
-## 明确不做
+- 转置 M==1 GEMM 后，历史 clean commit 的 schema v1 配对估计 TPOT 从 24.348 降至
+  6.087 ms/token；该数字用于说明优化沿革，投递前必须在 clean commit 用 schema v2 重跑；
+- 与 llama.cpp 的 1.65× 差距是 W8A16 vs Q4_K_M 的非同量化对照，只能作为外部参考，
+  不能宣传为公平加速比；
+- CUDA Graph 默认启用且 on/off greedy token 一致；
+- tokenizer 与 HuggingFace 30 例、417 token 逐 id 对齐；
+- 2026-08-23 当前测试 193 项通过。
 
-- 不再新建两个功能重叠的大项目（原 project-ideas.md 的"迷你推理引擎/KV Cache 管理器"
-  想法已被 tiny-llm/paged-infer 覆盖，该文件已归档删除）。
-- 不向 vLLM/SGLang 等上游提交 PR 作为计划依赖（若顺路修复 bug 可作为加分项，不计入关键路径）。
-- Fork 与 AI 翻译仓库不写入项目经历，只在"学习记录"中提及。
+**下一阶段只补证据，不盲加功能**：
+
+1. 固定 current HEAD、模型、prompt、输出长度、功耗与时钟，重跑 ≥5 次，报告中位数和
+   min/max 或置信区间；
+2. 做可归因消融：转置快路径 on/off、CUDA Graph on/off、连续 KV/分页 KV；每次只改一个因素；
+3. 用 Nsight Systems 拆 prefill/decode 时间线，用 Nsight Compute 锁定 lm_head、attention、
+   dequant 的吞吐、stall 与 occupancy；
+4. 画 prompt 长度 × 输出长度 × batch 的 TTFT、TPOT、tok/s、显存曲线；若声称峰值，
+   必须使用外部采样器并记录采样频率，不把离散 `cudaMemGetInfo` 差值冒充峰值；
+5. 外部基线必须同模型、同 prompt、同采样、同输出长度，并在不能同量化时醒目标注限制。
+
+## 项目 2：Kernel 深挖 = `cuflash-attn`
+
+**一句话**：从零实现 FlashAttention 前后向与 FlashDecoding，覆盖 FP32/FP16/BF16、
+WMMA、causal 边界和非整除形状。
+
+**面试价值**：用一个算法讲透 online softmax、tiling、共享内存、Tensor Core、数值容差、
+越界修复与负优化，不需要再新建一个 attention 玩具仓。
+
+**下一阶段证据**：选择 4–6 个能代表 prefill/decode 的形状，补 Nsight Compute 报告；在同一
+硬件上对比 PyTorch SDPA/官方 FlashAttention（能安装时）并保留更慢的形状，不只展示赢家。
+
+## 项目 3：Serving 扩展 = `paged-infer`
+
+**一句话**：Rust 控制面负责 Paged KV、continuous batching、调度状态机、限流、取消、
+OpenAI 兼容 HTTP/SSE 和服务评测，经 C ABI 接 `tiny-llm` 真实后端。
+
+**边界**：它证明系统设计与服务评测，不冒充底层 kernel 性能项目。3 并发 e2e 是正确性证据，
+不是生产 QPS 或容量证明；CPU 参考后端只用于协议和调度回归，不能产生 GPU 吞吐结论。
+
+**下一阶段证据**：使用已校正的 serving harness，在真实后端上画并发/到达率 → TTFT p95/p99、
+TPOT、吞吐、失败率和显存曲线；报告 warmup、重复次数、token 计数覆盖率和原始 `summary.json`。
+
+不同 KV、调度、抢占或 batching 想法放在本仓的实验/benchmark 场景内，以一个假设、一个
+对照和一个结论为单位推进。不要为每个优化点拆新仓，否则复用、评测和维护成本会掩盖学习收益。
+
+## 辅助项目
+
+- `cuda-foundations`：讲 CUDA 编程模型、SGEMM 阶梯、错误配置和性能测量纪律。
+- `triton-fused-ops`：讲相同算子的 Triton 表达、输入契约与 `torch.library` 集成。
+- `open-genomics/fq-compressor`：只在需要证明 C++23、oneTBB、数据布局与工程质量时出现，
+  不占 AI Infra 简历的主叙事位置。
+
+## 新仓库门槛
+
+默认不新建项目。一个想法只有同时满足以下条件才值得独立成仓：
+
+1. 受众与现有五仓明显不同；
+2. 依赖、发布周期和维护者边界能够独立；
+3. 已在现有仓实验或上游 issue 中完成最小验证；
+4. 能形成至少一个独立正确性基线和一套可复现 benchmark；
+5. 不会复制现有 KV Cache、scheduler、attention 或 runtime 主链路。
+
+参与 vLLM、SGLang、FlashInfer、llama.cpp 等上游比再造一个同类玩具仓更有外部信号，但不把
+“PR 必须合入”设为 12 周关键路径。每周固定 2–4 小时做 issue 筛选、复现、review 或小 PR；
+最终证据以上游链接为准，本仓 `community/` 只保存调查过程和复现器。
 
 ## STAR 条目模板（W10 产出）
 
 每个项目一条 STAR：S 背景 → T 目标与指标口径 → A 我的实现与取舍 → R 量化结果
-（硬件/版本/日期/命令）。数字必须能溯源到仓库 benchmark 脚本。
+（硬件/版本/日期/commit/命令）。数字必须能溯源到技术仓 benchmark 结果，限制条件紧跟数字，
+不能藏在页尾。

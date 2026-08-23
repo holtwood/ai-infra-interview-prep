@@ -1,0 +1,8 @@
+# 真实简历与投递记录只保留在本机，不进入公开仓库。
+resume/*.local.*
+applications/*.local.*
+
+# 常见本地与 Python 产物。
+.DS_Store
+__pycache__/
+*.py[cod]

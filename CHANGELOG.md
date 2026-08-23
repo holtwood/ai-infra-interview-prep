@@ -2,7 +2,7 @@
 
 遵循 [Keep a Changelog](https://keepachangelog.com/) 格式。
 
-## [Unreleased] — 2026-08-21
+## [Unreleased] — 2026-08-23
 
 ### Added
 
@@ -15,6 +15,14 @@
 - `llms.txt`：LLM 可读文档索引，遵循 llmstxt.org 规范（H1 + blockquote + H2 分段）。
 - `INDEX.md`：全仓文档按「规划 / 执行 / 追踪 / 参考」归档索引。
 - `weekly-review.md`：集中式周复盘模板（完成/时间预算/原因/收获/下周调整/自评）。
+- `resume/`：新增 v-performance 与 v-serving 两版公开脱敏简历，并约定真实信息使用
+  Git 忽略的 `.local` 副本。
+- `applications/`：迁入目标公司候选池与投递跟踪模板；新增 JD 评分和隐私边界。
+- `community/`：迁入上游 issue 筛选脚本，以及 llama.cpp #26366、#26978/#26979
+  的最小复现器与独立验证记录。
+- `.gitignore`：排除真实简历、真实投递记录和本地 Python 产物。
+- `CLOUD_GPU_PLAYBOOK.md`：新增 2026-08-23 云 GPU 价格快照、默认 L40S 48GB
+  选型、$300 预算止损、12 周项目映射、每日实验闭环和 kernel/engine/serving 评测矩阵。
 
 ### Changed
 
@@ -25,6 +33,18 @@
 - `progress-tracker.md`：结构化（YAML frontmatter + 每周进度表自动更新 + 周复盘存档表），
   主题与周文件标题对齐。
 - 执行闭环：勾选 `- [x]` 后运行 `make progress-write`，自动更新完成度、frontmatter status 与 README 状态。
+- 明确仓库职责：本仓承载公开脱敏的计划、面试、求职与社区执行材料；技术作品与跨仓
+  契约仍以 `open-infra-ai` 组织为准。
+- `PROJECT_STRATEGY.md`：将 `tiny-llm` 定为推理加速旗舰，`cuflash-attn` 定为
+  kernel 深挖，`paged-infer` 定为 serving 扩展；冻结技术仓命名并增加新仓库门槛。
+- `APPLICATION_PLAN.md`、`BASELINE.md`、`SKILL_MATRIX.md` 与 W6/W8/W10–W12 计划：
+  更新当前证据、评测口径、简历版本、社区时段和单卡/多卡诚实边界。
+- `tiny-llm` 的历史 schema v1 TPOT 明确标为“跨请求估算”，不得与 schema v2
+  同表汇总；简历投递前必须在 clean commit 上按 schema v2 重跑正式数据。
+- 全仓个人账号链接由已重定向的 `LessUp` 更新为当前 `holtwood`；删除已退出使用的
+  `open-infra-ai/aicl-lab` 活跃入口。
+- `community/README.md`：建立 llama.cpp → vLLM/GuideLLM → FlashInfer → SGLang
+  的贡献梯度、issue 评分门槛、证据型评论模板与非交易式社区边界。
 
 ## [2026-08-19]
 

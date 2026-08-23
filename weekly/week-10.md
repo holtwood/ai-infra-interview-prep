@@ -20,7 +20,8 @@ status: upcoming
 
 ## 本周目标
 
-把 12 周积累的实验证据收进 aicl-lab 证据包叙事；完成两版简历初稿；启动练手投递。
+把 12 周积累的实验证据收进各技术仓结果页与组织 meta 索引；完成两版简历初稿；
+启动练手投递。
 
 ## 先修知识
 
@@ -33,20 +34,22 @@ W1–W9 全部交付物。
 
 ## 阅读范围
 
-- aicl-lab 证据包（interview/ 目录）现状
+- open-infra-ai meta 仓的只读历史证据矩阵（仅作索引，不改写）
+- 各技术仓当前 README、benchmark 结果与复现命令
 - github-repos-hub 的 original-projects.md（简历候选池）
 
 ## 动手实验
 
 1. 为两个主项目各写 Demo 脚本（一键跑通：build → benchmark → 输出关键数字）。
 2. 检查每个性能数字的口径五要素：硬件、软件版本、日期、commit、命令。
-3. 更新 LessUp 主页的项目展示（按 APPLICATION_PLAN 的项目顺序）。
+3. 更新 holtwood 主页的项目展示（按 APPLICATION_PLAN 的项目顺序）。
+4. 把真实投递写入 `applications/tracking.local.md`，不提交私人数据。
 
 ## 可验证交付物
 
 - [ ] 两个主项目 STAR 条目（数字全部可溯源）
 - [ ] Demo 脚本 × 2
-- [ ] v-kernel 与 v-serving 简历初稿
+- [ ] v-performance 与 v-serving 简历初稿
 - [ ] 投递跟踪表 + 首批 3–5 家练手投递
 
 ## 面试问题
