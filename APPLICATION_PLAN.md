@@ -1,6 +1,6 @@
 # 求职执行计划（APPLICATION_PLAN）
 
-更新日期：2026-08-23。12 周计划见 [ROADMAP.md](ROADMAP.md)；岗位样本见
+更新日期：2026-08-24。12 周计划见 [ROADMAP.md](ROADMAP.md)；岗位样本见
 [JOB_MARKET_EVIDENCE.md](JOB_MARKET_EVIDENCE.md)。
 
 ## 简历版本
@@ -25,11 +25,12 @@
 
 - W1 起：每周固定 2–4 小时社区参与，目标是一个深度复现、review 或小 PR，而不是
   批量评论。材料在 [`community/`](community/)；最终证据以上游链接为准。
-- W8–W9：用真实 JD 反向检查简历关键词和证据缺口，建立首批目标清单。
-- W10：从 [`applications/tracking.template.md`](applications/tracking.template.md)
-  复制本地 `tracking.local.md`，投 3–5 家非首选岗位做漏斗校准。
-- W11–W12：每周 10–15 个**匹配且完成定制**的有效投递；大陆岗位内推优先，
-  全球岗位使用 LinkedIn + 官网直投。
+- W1：完成个人 GitHub 与两版简历的真实信息填写；从
+  [`applications/tracking.template.md`](applications/tracking.template.md) 复制本地
+  `tracking.local.md`，投 3–5 家非首选岗位做漏斗校准。
+- W2–W4：每周 5–8 个匹配且完成定制的有效投递；同时用真实 JD 反向检查关键词、证据缺口与
+  地点/年限硬门槛。大陆岗位优先寻找熟悉业务的人交流，全球岗位使用官网和 LinkedIn 直投。
+- W5 起：根据面试转化调整到每周 8–12 个有效投递；不要为等待“完美项目”暂停投递。
 - 每次笔试/面试后 24 小时内在本地记录复盘，并更新 SKILL_MATRIX 与
   INTERVIEW_MATRIX 的自评。
 
@@ -43,9 +44,9 @@
 
 ## GitHub 展示顺序
 
-Profile 建议 Pin 六项：`tiny-llm`、`cuflash-attn`、`paged-infer`、
-`cuda-foundations`、`triton-fused-ops`、组织 meta 仓 `open-infra-ai`。前 3 项与简历叙事一致，
-后 3 项用于展示完整能力链。个人 Profile 简介直接写目标方向和当前可复现硬件，不解释“转行焦虑”。
+Profile 首屏 Pin 三项：`tiny-llm`、`paged-infer`、`cuflash-attn`，顺序与两版简历保持一致。
+其余仓库由组织首页导航。个人 Profile 简介直接写 C++ / CUDA / LLM inference systems，并公开
+与 `open-infra-ai` 的成员关系，不解释“转行焦虑”。
 
 ## 必须由本人完成的事项
 
