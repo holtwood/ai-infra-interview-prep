@@ -1,0 +1,333 @@
+open-infra-ai/README.md:16:| L1 Attention | [cuflash-attn](https://github.com/open-infra-ai/cuflash-attn) | 从零实现的 CUDA C++ FlashAttention 前后向（
+open-infra-ai/README.md:18:| L3 控制面 | [paged-infer](https://github.com/open-infra-ai/paged-infer) | PagedAttention 分页 KV + Continuous Batching 的推�
+open-infra-ai/README.md:27:   3. **cuflash-attn**（FlashAttention 前后向深挖）→
+open-infra-ai/README.md:29:   5. **paged-infer**（分页调度 / continuous batching / HTTP 控制面，接 tiny-llm 真实后端）。
+open-infra-ai/README.md:37:  ⇄ [`paged-infer/src/tiny_llm_ffi.rs`](https://github.com/open-infra-ai/paged-infer/blob/master/src/tiny_llm_ffi.rs)
+open-infra-ai/README.md:50:- **paged-infer**：**3 并发分页请求 e2e 与 llama.cpp greedy 对齐**（请求 1 全序列
+open-infra-ai/README.md:55:- **cuflash-attn**：FlashAttention 前后向 FP32/FP16/BF16，FP16/BF16 前向接 WMMA；
+open-infra-ai/README.md:71:2. **专项深挖：cuflash-attn** —— 用来证明 CUDA kernel、online softmax、
+open-infra-ai/README.md:73:3. **系统扩展：paged-infer** —— 用来证明 Paged KV、continuous batching、
+open-infra-ai/PHASE2_NEXT_E.md:6:> **状态**：D 阶段 ✅ 完成。tiny-llm HEAD=1c0abdd、paged-infer d32e435、cuda-foundations f91db3d，三仓 ahead 0，
+open-infra-ai/PHASE2_NEXT_E.md:27:## 任务 E0：给 D4 请求 2 补上 llama.cpp 真实 fixture（paged-infer）
+open-infra-ai/PHASE2_NEXT_E.md:56:cd /home/shane/github/aicl/paged-infer
+open-infra-ai/PHASE2_NEXT_E.md:129:## 任务 E2：cuflash-attn 一轮修复 + 一次有数字的优化
+open-infra-ai/PHASE2_NEXT_E.md:163:cd /home/shane/github/aicl/cuflash-attn
+open-infra-ai/PHASE2_NEXT_E.md:241:   for d in cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer; do
+open-infra-ai/PHASE2_NEXT_E.md:251:   for r in cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer aicl-lab; do
+open-infra-ai/PHASE2_NEXT_E.md:255:   for r in cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer; do
+open-infra-ai/PHASE2_NEXT_E.md:276:   - paged-infer：cargo test 全绿；
+open-infra-ai/PLAN_v3.md:29:| cuflash-attn | `e0862b4` | ahead 1 | ✅ 冻结 | 1 docs commit（ROADMAP） |
+open-infra-ai/PLAN_v3.md:31:| paged-infer | `fb9d670` | ahead 1 | ✅ 冻结 | 1 docs commit（ROADMAP） |
+open-infra-ai/PLAN_v3.md:40:| cuflash-attn | 71 tests，100% passed（1 skip） | PyTorch 对比项环境 skip |
+open-infra-ai/PLAN_v3.md:42:| paged-infer | 218 passed，0 failed | 本次未开 `--features tiny-llm`；3 并发 e2e 证据指向 `9c3700b`/`9c974d3` |
+open-infra-ai/PLAN_v3.md:88:for d in cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer; do
+open-infra-ai/PLAN_v3.md:145:| I4 | 线上面试 demo 彩排：tiny-llm bench → paged-infer 3 并发测试 → triton op schema | 按 `PRESENTATION_CHECKLIST.
+open-infra-ai/PHASE2_NEXT_D.md:9:> 本批目标：让 paged-infer 的真实 tiny-llm 后端**真正使用分页 KV（block_tables）**，跑通 3 并发端到�
+open-infra-ai/PHASE2_NEXT_D.md:23:   - 不修改 paged-infer `scheduler.rs` 的 P0 行为；
+open-infra-ai/PHASE2_NEXT_D.md:76:### D1b：paged-infer 侧（一个 commit）
+open-infra-ai/PHASE2_NEXT_D.md:342:## 任务 D3：paged-infer TinyLlmExecutor 接入真实块表
+open-infra-ai/PHASE2_NEXT_D.md:419:- paged-infer：`README.md` 路线图 T11 打勾、`DEVELOPMENT_PLAN.md` T11 状态、`src/tiny_llm_executor.rs` 顶部注释
+open-infra-ai/PHASE2_NEXT_D.md:427:# paged-infer
+open-infra-ai/PHASE2_NEXT_D.md:428:cd /home/shane/github/aicl/paged-infer && git push origin master && git tag phase-2-d && git push origin phase-2-d
+open-infra-ai/PHASE2_NEXT_D.md:441:- [x] tiny-llm 与 paged-infer 的 C ABI 均为 v2（9 int config + num_blocks 参数），两侧布局守卫测试通过。
+open-infra-ai/PHASE2_NEXT_D.md:443:- [x] paged-infer 默认策略 1；`PAGED_INFER_TINY_LLM_STRATEGY=2` 可回退策略 2。
+open-infra-ai/PHASE3_PLAN.md:60:   for d in cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer aicl-lab; do
+open-infra-ai/PHASE3_PLAN.md:67:   - cuflash-attn：`cmake --preset release && cmake --build --preset release && ctest --preset release --output-on-failure`
+open-infra-ai/PHASE3_PLAN.md:69:   - paged-infer：`cargo fmt --all -- --check && cargo clippy --all-targets -- -D warnings && cargo test`
+open-infra-ai/PHASE3_PLAN.md:110:21. paged-infer 3 并发 e2e 与 llama.cpp 参考对齐（请求 1 24+EOS）。
+open-infra-ai/PHASE3_PLAN.md:112:23. paged-infer 调度器资源守恒不变量（used+free==total）有属性测试。
+open-infra-ai/PHASE3_PLAN.md:113:24. paged-infer 内存水位线/HOL/优先级调度/NaN/Unicode 修复各有回归测试。
+open-infra-ai/PHASE3_PLAN.md:114:25. paged-infer OpenAI 兼容 API + SSE + metrics 有 server integration 测试。
+open-infra-ai/PHASE3_PLAN.md:178:- `03-cuflash-attn.md`
+open-infra-ai/PHASE3_PLAN.md:180:- `05-paged-infer.md`
+open-infra-ai/PHASE3_PLAN.md:182:**特别要求**：tiny-llm 稿的"优化故事"必须用 microbench 表与 TPOT 24.35→6.56→6.09ms；paged-infer 稿的"验
+open-infra-ai/PHASE3_PLAN.md:220:- paged-infer / serving（14 问）：PagedAttention 碎片问题、block table、CB vs static batching、状态机、三层准
+open-infra-ai/PHASE3_PLAN.md:260:   - GitHub profile 建议（pinned 仓库顺序：tiny-llm、cuflash-attn、paged-infer、cuda-foundations、triton-fused-ops�
+open-infra-ai/PHASE3_PLAN.md:263:   - 线上面试 demo 顺序（先 tiny-llm bench，再 paged-infer 3 并发测试，再 triton op schema）。
+open-infra-ai/docs/repository-boundaries.md:25:| `cuflash-attn` | FlashAttention/FlashDecoding CUDA 专项深挖 | `tiny-llm` 的 generate 路径 |
+open-infra-ai/docs/repository-boundaries.md:27:| `paged-infer` | Paged KV、continuous batching、调度、HTTP/SSE 与 serving 评测 | 重复实现模型算�
+open-infra-ai/docs/repository-boundaries.md:29:`tiny-llm` 与 `paged-infer` 只通过受测试的 C ABI 集成；`cuflash-attn` 不接入
+open-infra-ai/docs/repository-boundaries.md:54:- CUDA 专项深度：`cuflash-attn`；
+open-infra-ai/docs/repository-boundaries.md:55:- Serving/调度扩展：`paged-infer`；
+open-infra-ai/docs/cross-repo-contracts.md:6:> 与审计快照的差异：§10 Backend 边界已按实际决策落地为 tiny-llm ⇄ paged-infer
+open-infra-ai/docs/cross-repo-contracts.md:190:tiny-llm（数据面）与 paged-infer（控制面）采用**同进程 C ABI 静态链接**：
+open-infra-ai/docs/cross-repo-contracts.md:193:  ⇄ [`paged-infer/src/tiny_llm_ffi.rs`](https://github.com/open-infra-ai/paged-infer/blob/master/src/tiny_llm_f
+open-infra-ai/docs/cross-repo-contracts.md:194:- `TinyLlmConfig` 为 9 个 int 的 repr(C) 布局；paged-infer 侧有布局守卫测试
+open-infra-ai/docs/cross-repo-contracts.md:206:  `paged-infer/tests/tiny_llm_backend.rs`、`paged-infer/tests/tiny_llm_text_e2e.rs`。
+open-infra-ai/interview/EVIDENCE_MATRIX.md:35:- 口径/限制：FlashAttention 前向是 cuflash-attn 的参考实现，不是本仓优化旗舰。无 GPU 时 k
+open-infra-ai/interview/EVIDENCE_MATRIX.md:61:- 位置：`cuflash-attn/tests/unit/`（forward/backward/dtype）；本次 freeze `ctest --preset release` 71 coll
+open-infra-ai/interview/EVIDENCE_MATRIX.md:62:- 关键 commit：`cuflash-attn` v0.5.0 前后向 WMMA 路径（CHANGELOG `[0.5.0]`）
+open-infra-ai/interview/EVIDENCE_MATRIX.md:65:cd cuflash-attn && cmake --preset release && cmake --build --preset release && ctest --preset release --output-on-
+open-infra-ai/interview/EVIDENCE_MATRIX.md:71:- 位置：`cuflash-attn/tests/unit/test_forward.cu:397` `ForwardTest.GridYOverflowSmoke`（B=512,H=128 → 65536�
+open-infra-ai/interview/EVIDENCE_MATRIX.md:72:- 关键 commit：`cuflash-attn@d144765` `fix(forward): flatten grid.y batch*heads for >65535 launches`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:75:cd cuflash-attn && ctest --preset release -R GridYOverflowSmoke --output-on-failure
+open-infra-ai/interview/EVIDENCE_MATRIX.md:81:- 位置：`cuflash-attn/docs/performance/causal-boundary-skip.md:32-41,65-72`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:82:- 关键 commit：`cuflash-attn@e1735b3` `perf(forward): skip fully-future KV blocks in causal path`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:91:- 位置：`cuflash-attn/src/forward/flash_decoding.cu:1`；`tests/unit/test_flash_decoding.cu`（`MatchesCpuRefer
+open-infra-ai/interview/EVIDENCE_MATRIX.md:92:- 关键 commit：`cuflash-attn@9f65df7` `feat: E3 FlashDecoding (Split-KV) decode 前向`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:95:cd cuflash-attn && ctest --preset release -R FlashDecoding --output-on-failure
+open-infra-ai/interview/EVIDENCE_MATRIX.md:187:- 位置：`paged-infer/tests/tiny_llm_text_e2e.rs:159-166,272-280`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:188:- 关键 commit：`paged-infer@9c974d3` `test(e2e): honest llama.cpp divergence fixture for 2+2 prompt`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:191:cd paged-infer
+open-infra-ai/interview/EVIDENCE_MATRIX.md:201:- 位置：`tiny-llm/include/tiny_llm/ffi.h:4,28-38`；`paged-infer/src/tiny_llm_ffi.rs:143-144` `tiny_llm_config
+open-infra-ai/interview/EVIDENCE_MATRIX.md:202:- 关键 commit：`tiny-llm@be8984e`；`paged-infer@050c80a`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:205:cd paged-infer && cargo test tiny_llm_config_layout_is_stable
+open-infra-ai/interview/EVIDENCE_MATRIX.md:220:### E21. paged-infer 3 并发 e2e 与 llama.cpp 参考对齐（请求 1 含 EOS 共 24 token）
+open-infra-ai/interview/EVIDENCE_MATRIX.md:222:- 位置：`paged-infer/tests/tiny_llm_text_e2e.rs:166,257-266`；参考序列 24 个 id，末位 `151645`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:223:- 关键 commit：`paged-infer@9c3700b` `test(e2e): 3-way paged concurrency with llama.cpp token parity`
+open-infra-ai/interview/EVIDENCE_MATRIX.md:238:### E23. paged-infer 调度器资源守恒不变量（used+free==total）有属性测试
+open-infra-ai/interview/EVIDENCE_MATRIX.md:240:- 位置：`paged-infer/src/kv_cache.rs:416` `prop_block_count_invariant`；`src/scheduler.rs:1512` `prop_resourc
+open-infra-ai/interview/EVIDENCE_MATRIX.md:244:cd paged-infer && cargo test prop_block_count_invariant prop_resources_reclaimed
+open-infra-ai/interview/EVIDENCE_MATRIX.md:248:### E24. paged-infer 内存水位线 / HOL / 优先级 / NaN / Unicode 修复各有回归测试
+open-infra-ai/interview/EVIDENCE_MATRIX.md:251:- 关键 commit：paged-infer T0–T8 / T12 与优先级调度
+open-infra-ai/interview/EVIDENCE_MATRIX.md:254:cd paged-infer && cargo test test_small_pending_request_not_blocked_by_large_one \
+open-infra-ai/interview/EVIDENCE_MATRIX.md:260:### E25. paged-infer OpenAI 兼容 API + SSE + metrics 有 server integration 测试
+open-infra-ai/interview/EVIDENCE_MATRIX.md:262:- 位置：`paged-infer/tests/server_integration.rs`（`/v1/completions`、SSE `data: [DONE]`、`/metrics` Promet
+open-infra-ai/interview/EVIDENCE_MATRIX.md:266:cd paged-infer && cargo test --test server_integration
+open-infra-ai/interview/EVIDENCE_MATRIX.md:284:  cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer || true
+open-infra-ai/interview/EVIDENCE_MATRIX.md:301:- 关键 commit：各仓实测回填提交（如 `tiny-llm@6d0471e`、`cuflash-attn` benchmarks 刷新 `6860cbc`�
+open-infra-ai/changelog/2026-08-23-repository-boundaries.md:9:  主项目，`cuflash-attn` 为 kernel 深挖，`paged-infer` 为 serving 系统扩展。
+open-infra-ai/interview/cross-cutting.md:37:CUDA C++ 的调度单位是线程、warp、shared memory 和 `mma`。cuda-foundations 的 SGEMM 阶梯把 naive **0.
+open-infra-ai/interview/cross-cutting.md:59:先划边界。计算面是 tiny-llm：kernel、量化、CUDA Graphs、显存、真实 token。控制面是 paged-in
+open-infra-ai/interview/ROLE_PLAYBOOKS/kernel.md:4:> 同一份材料重排：主推 cuflash-attn + triton-fused-ops + cuda-foundations；tiny-llm 只讲转置�
+open-infra-ai/interview/ROLE_PLAYBOOKS/kernel.md:19:| 18–19 | paged-infer 一分钟带过：只给“控制面在另一师傅手上，我不管调度” | Q57
+open-infra-ai/interview/ROLE_PLAYBOOKS/kernel.md:28:1. `cuflash-attn › 1`：FA 前后向多精度差分 + grid.y 展平回归（E7）——先证明 kernel �
+open-infra-ai/interview/ROLE_PLAYBOOKS/kernel.md:29:2. `cuflash-attn › 2`：causal ±2% 负结果留文档（E8）——证明诚实。
+open-infra-ai/interview/ROLE_PLAYBOOKS/kernel.md:30:3. `cuflash-attn › 3`：FlashDecoding Split-KV（E9）——证明 decode 方向的理解。
+open-infra-ai/PHASE2_NEXT.md:62:## 任务 A2：提交 cuflash-attn 文档同步 + 归档 PLAN.md（P0）
+open-infra-ai/PHASE2_NEXT.md:67:1. `cd /home/shane/github/aicl/cuflash-attn`
+open-infra-ai/PHASE2_NEXT.md:117:2. `paged-infer`（ahead 15）
+open-infra-ai/PHASE2_NEXT.md:118:3. `cuflash-attn`（ahead 4 + 本批 A2 的 2 个提交）
+open-infra-ai/PHASE2_NEXT.md:129:for d in tiny-llm paged-infer cuflash-attn triton-fused-ops cuda-kernel-academy; do
+open-infra-ai/PHASE2_NEXT.md:253:- `paged-infer/README.md`
+open-infra-ai/PHASE2_NEXT.md:255:- `cuflash-attn/README.md`
+open-infra-ai/interview/ROLE_PLAYBOOKS/runtime.md:32:5. `paged-infer › 1`：C ABI v2 九整型布局、Rust `sizeof==36` 守卫（E19）——证明跨语言�
+open-infra-ai/interview/resume-bullets.zh.md:25:## cuflash-attn（3）
+open-infra-ai/interview/resume-bullets.zh.md:37:## paged-infer（3）
+open-infra-ai/interview/ROLE_PLAYBOOKS/serving.md:4:> 同一份材料重排：主推 paged-infer（调度/资源不变量/3 并发）+ tiny-llm 作为后端；k
+open-infra-ai/interview/ROLE_PLAYBOOKS/serving.md:28:1. `paged-infer › 1`：C ABI v2 九整型布局、Rust `sizeof==36` 守卫（E19）——先证明跨语�
+open-infra-ai/interview/ROLE_PLAYBOOKS/serving.md:29:2. `paged-infer › 2`：属性测试锁定 `used+free==total`（E23）——证明不变量文化。
+open-infra-ai/interview/ROLE_PLAYBOOKS/serving.md:30:3. `paged-infer › 3`：OpenAI 兼容 API/SSE/`paged_*` metrics 集成 37 项（E25）——证明对外�
+open-infra-ai/docs/organization-audit/2026-08-13/04-validation-and-benchmark-strategy.md:189:4. `paged-infer`：完成 CPU incremental oracle 和 L5。
+open-infra-ai/docs/organization-audit/2026-08-13/04-validation-and-benchmark-strategy.md:190:5. `cuflash-attn`：刷新 GPU numerical 和 L6。
+open-infra-ai/interview/talks/00-master-narrative.md:9:我做的是一条从 CUDA 算子到推理引擎的可验证学习链：五个仓库，四层能力。旗
+open-infra-ai/interview/talks/00-master-narrative.md:13:I built a four-layer AI infra portfolio across five repos: CUDA GEMM teaching, Triton fused ops, a from-
+open-infra-ai/interview/talks/00-master-narrative.md:20:L2 Kernel 深度     cuflash-attn         FlashAttention 前后向（WMMA / FlashDecoding）
+open-infra-ai/interview/talks/00-master-narrative.md:22:L4 Serving         paged-infer          调度 / BlockPool / OpenAI API；经 C ABI 调 tiny-llm
+open-infra-ai/interview/talks/00-master-narrative.md:28:**切仓原则（会被追问）**：一个算法一个 owner。FlashAttention → cuflash-attn；量化
+open-infra-ai/interview/talks/00-master-narrative.md:36:| 1 | 调度器准入、分配 KV 块、组 batch | `paged-infer/src/scheduler.rs` 状态机 Pending→P
+open-infra-ai/interview/talks/00-master-narrative.md:58:- **Before**：FFI 只能连续 KV；paged-infer 的 block table 传了也不生效。
+open-infra-ai/interview/LIVE_DEMO_SCRIPT.md:14:for d in cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer aicl-lab; do
+open-infra-ai/interview/LIVE_DEMO_SCRIPT.md:26:固定顺序：tiny-llm bench → paged-infer 3 并发 → triton op schema。
+open-infra-ai/interview/LIVE_DEMO_SCRIPT.md:44:### Step 2 · paged-infer 3 并发（正确性）
+open-infra-ai/interview/LIVE_DEMO_SCRIPT.md:49:cd /home/shane/github/aicl/paged-infer
+open-infra-ai/interview/LIVE_DEMO_SCRIPT.md:89:3. “测试规模看这张表：cuflash 71 项、tiny-llm 175、paged-infer 218，skip 的门控原因都在 fre
+open-infra-ai/interview/LIVE_DEMO_SCRIPT.md:119:cd /home/shane/github/aicl/paged-infer
+open-infra-ai/interview/talks/03-cuflash-attn.md:1:# cuflash-attn · 10 分钟讲述稿
+open-infra-ai/interview/talks/04-tiny-llm.md:13:OUT：调度/CB → paged-infer；FA 深挖 → cuflash；Triton → triton-fused-ops。
+open-infra-ai/interview/talks/01-cuda-foundations.md:13:OUT：真实 GGUF、生产 FA、调度。那些分别在 tiny-llm / cuflash-attn / paged-infer。
+open-infra-ai/interview/PRESENTATION_CHECKLIST.md:10:2. [cuflash-attn](https://github.com/open-infra-ai/cuflash-attn) — kernel 深度
+open-infra-ai/interview/PRESENTATION_CHECKLIST.md:11:3. [paged-infer](https://github.com/open-infra-ai/paged-infer) — serving 控制面
+open-infra-ai/interview/PRESENTATION_CHECKLIST.md:23:| paged-infer | 策略 1 默认；3 并发对齐；is/equals 诚实 | 3030 vs 5118；生产并发 |
+open-infra-ai/interview/PRESENTATION_CHECKLIST.md:24:| cuflash-attn | grid.y 修复；causal skip **负结果**；FlashDecoding | ±2% 当加速成功；Logical
+open-infra-ai/interview/PRESENTATION_CHECKLIST.md:33:for d in cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer aicl-lab; do
+open-infra-ai/interview/PRESENTATION_CHECKLIST.md:42:# paged-infer 默认 CI（不含 e2e）
+open-infra-ai/interview/PRESENTATION_CHECKLIST.md:43:cd /home/shane/github/aicl/paged-infer && cargo test
+open-infra-ai/interview/PRESENTATION_CHECKLIST.md:53:2. **paged-infer 3 并发**（正确性，需 `--features tiny-llm`）  
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:11:| CUDA attention | `cuflash-attn` | dense FlashAttention 前后向、数值�
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:13:| Serving | `paged-infer` | 分页资源、continuous batching、HTTP/SSE | 
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:21:- `paged-infer` 明确是控制面脚手架并保持低优先级。
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:23:- `cuflash-attn` 明确是学习、审计和轻量集成，而非框架替�
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:51: -> paged-infer 请求生命周期
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:122:- `cuflash-attn` 不能直接作为 `tiny-llm` attention backend：它缺�
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:124:- `paged-infer` 不应直接依赖 `tiny-llm` 的内部 C++ 类型；需要
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:132:- `cuflash-attn`：kernel 深度旗舰，优先建立可信 benchmark。
+open-infra-ai/docs/organization-audit/2026-08-13/01-organization-architecture.md:138:- `paged-infer`：修 P0 后保持控制面练习，等待真实 backend。
+open-infra-ai/interview/talks/05-paged-infer.md:1:# paged-infer · 10 分钟讲述稿
+open-infra-ai/interview/talks/02-triton-fused-ops.md:13:FlashAttention 本仓只做 cuflash-attn 的独立参考，不讲前后向优化（README 降级声明�
+open-infra-ai/interview/WHITEBOARD_CHEATSHEET.md:21:**与本仓库数字对应**：这正是 `cuflash-attn` 前向 kernel 的 online 更新；FP16/BF16 API 把 
+open-infra-ai/interview/WHITEBOARD_CHEATSHEET.md:25:**可在现场打开**：`cuflash-attn/src/forward/flash_attention_forward_typed.cu`；追问见 `interview/
+open-infra-ai/interview/WHITEBOARD_CHEATSHEET.md:37:**与本仓库数字对应**：`cuflash-attn` 不物化 S；`NUMBERS_CARD.md` §8 明确 3030/5118 MiB 这�
+open-infra-ai/interview/WHITEBOARD_CHEATSHEET.md:41:**可在现场打开**：`cuflash-attn` 算法说明与 `benchmarks/bench_flash_attention.cu` 的 LogicalHBM
+open-infra-ai/interview/WHITEBOARD_CHEATSHEET.md:55:**与本仓库数字对应**：`cuflash-attn` benchmark 报的是 **LogicalHBM** 模型流量（Q30），本
+open-infra-ai/interview/WHITEBOARD_CHEATSHEET.md:59:**可在现场打开**：`cuflash-attn/benchmarks/bench_flash_attention.cu`（counter 名 `LogicalHBM GB/s`�
+open-infra-ai/interview/WHITEBOARD_CHEATSHEET.md:204:**与本仓库数字对应**：paged-infer 用属性测试锁块计数不变量（`used+free==total`，E23�
+open-infra-ai/interview/WHITEBOARD_CHEATSHEET.md:208:**可在现场打开**：`paged-infer/src/kv_cache.rs`（`prop_block_count_invariant`）与 `paged-infer/sr
+open-infra-ai/interview/resume-bullets.en.md:25:## cuflash-attn (3)
+open-infra-ai/interview/resume-bullets.en.md:37:## paged-infer (3)
+open-infra-ai/interview/DEFENSE_PLAYBOOK.md:28:- 证据式回答：`paged-infer/tests/tiny_llm_text_e2e.rs:159-166,272-280` 记录 llama.cpp `[17,10,17,16819,�
+open-infra-ai/interview/DEFENSE_PLAYBOOK.md:36:- 证据式回答：`cuflash-attn/docs/performance/causal-boundary-skip.md:32-41,65-72` 有 before/after 表；�
+open-infra-ai/interview/DEFENSE_PLAYBOOK.md:44:- 证据式回答：`tiny-llm/tests/test_ffi.cpp:199` `FFITest.PagedKVStrategyMatchesContiguous` 证明策略 1 �
+open-infra-ai/interview/DEFENSE_PLAYBOOK.md:52:- 证据式回答：`paged-infer/tests/tiny_llm_text_e2e.rs` 的 `qwen2_three_concurrent_paged_requests_match_lla
+open-infra-ai/interview/DEFENSE_PLAYBOOK.md:63:- 追问 2：那 cuda-foundations 还值得讲吗？ → 值得讲的是教学阶梯与负结果（E1），不是
+open-infra-ai/interview/FREEZE_AUDIT.md:26:| cuflash-attn | `e0862b4` docs: check off completed ROADMAP… | ahead 1 | （空；`phase-2-e` 在 HEAD~1） | |
+open-infra-ai/interview/FREEZE_AUDIT.md:28:| paged-infer | `fb9d670` docs: mark paged KV strategy 1… | ahead 1 | （空；`phase-2-e` 在 HEAD~1） | 默认 `
+open-infra-ai/interview/FREEZE_AUDIT.md:58:### 3.3 cuflash-attn
+open-infra-ai/interview/FREEZE_AUDIT.md:83:### 3.5 paged-infer
+open-infra-ai/interview/FREEZE_AUDIT.md:106:真实 tiny-llm 3 并发 e2e **本次未重跑**（T1 命令是无 feature 的 `cargo test`）。证据仍指向 `pa
+open-infra-ai/interview/FREEZE_AUDIT.md:110:- 五个开发仓：本次命令 **0 failed**。skip 均有对应门控（第二模型、torch.compile smoke、cufla
+open-infra-ai/interview/NUMBERS_CARD.md:43:## 4. cuflash-attn
+open-infra-ai/interview/NUMBERS_CARD.md:92:| cuflash-attn | **71 collected, 0 failed, 1 skipped**（pytorch comparison） | `ctest --preset release` |
+open-infra-ai/interview/NUMBERS_CARD.md:94:| paged-infer | **218 passed**（无 `tiny-llm` feature）；e2e 用例 0 运行 | `cargo fmt/clippy/test` |
+open-infra-ai/interview/NUMBERS_CARD.md:98:来源：`paged-infer/tests/tiny_llm_text_e2e.rs`。commit：`9c3700b` + 诚实分歧 `9c974d3`。
+open-infra-ai/interview/NUMBERS_CARD.md:118:10. **paged-infer 218**：不含真实 GPU e2e。mini-vLLM 故事的 token 对齐测试要显式开 feature。
+open-infra-ai/interview/drill-sets/03.md:1:# 快问训练卡 03 — paged-infer + 跨仓边界侧重
+open-infra-ai/interview/QA_BANK.md:18:- 证据：`cuda-foundations/01-sgemm-tutorial/`；`cuflash-attn@d144765`（grid 上限）
+open-infra-ai/interview/QA_BANK.md:75:- 证据：`cuda-foundations` double_buffer kernel；`cuflash-attn/ROADMAP.md`；组织审计对同步 load 的说明
+open-infra-ai/interview/QA_BANK.md:105:- 追问 1：面试只讲教学仓够不够？ → 不够。旗舰是 tiny-llm + paged-infer。
+open-infra-ai/interview/QA_BANK.md:213:- 证据：`cuflash-attn` 前向 kernel；讲述稿 `03-cuflash-attn.md`
+open-infra-ai/interview/QA_BANK.md:276:- 证据：数字卡 §4、§8；`cuflash-attn/ROADMAP.md`
+open-infra-ai/interview/QA_BANK.md:294:- 证据：`cuflash-attn/benchmarks/bench_flash_attention.cu`；README 带宽口径
+open-infra-ai/interview/QA_BANK.md:450:## paged-infer / serving（Q47–Q60）
+open-infra-ai/interview/QA_BANK.md:458:- 证据：E20、E22；paged-infer README
+open-infra-ai/interview/QA_BANK.md:462:- 一句话答案：paged-infer 控制面持有；策略 1 经 FFI 上传扁平表和每序列 `num_blocks`。
+open-infra-ai/interview/QA_BANK.md:476:- 证据：`paged-infer/src/scheduler.rs`；E21
+open-infra-ai/interview/QA_BANK.md:493:- 证据：E24；`paged-infer/src/tiny_llm_executor.rs`；讲述稿 `05-paged-infer.md`
+open-infra-ai/interview/QA_BANK.md:528:- 证据：`paged-infer/README.md` 无抢占节；E24
+open-infra-ai/interview/QA_BANK.md:536:- 证据：`paged-infer/src/cpu_executor.rs`；README 无抢占
+open-infra-ai/interview/QA_BANK.md:564:- 证据：E25；`paged-infer/ROADMAP.md`；CHANGELOG 流式诚实化
+open-infra-ai/interview/QA_BANK.md:573:- 证据：E19、E23；`paged-infer/src/tiny_llm_executor.rs`；`interview/cross-cutting.md` §3
+open-infra-ai/docs/organization-audit/2026-08-13/designs/end-to-end-validation.md:186:在 `paged-infer` 真实 backend 尚未接入前，先用 deterministic ba
+open-infra-ai/PLAN_I.md:130:- 套 01：总叙事 + tiny-llm 侧重；套 02：cuflash + CUDA/Triton 侧重；套 03：paged-infer + 跨仓边界侧重；
+open-infra-ai/PLAN_I.md:143:1. **场景 A（有 GPU）**：tiny-llm bench → paged-infer 3 并发 → triton op schema，每步给出：完整命令、预期�
+open-infra-ai/PLAN_I.md:173:- `kernel.md`：主推 cuflash-attn + triton-fused-ops + cuda-foundations；tiny-llm 只讲转置优化与 microbench；paged-infer 
+open-infra-ai/PLAN_I.md:175:- `serving.md`：主推 paged-infer（调度/资源不变量/3 并发）+ tiny-llm 作为后端；kernel 只讲"为什么控制面�
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:30:3. 修复 `paged-infer` 的 layer-aware KV Cache，再考虑真实后端对接。
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:50:- [`paged-infer`](repos/paged-infer.md)
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:52:- [`cuflash-attn`](repos/cuflash-attn.md)
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:59:- [`paged-infer` KV Cache 与 API 语义修复设计](designs/paged-infer-correctness.md)
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:62:- [`cuflash-attn` 基准证据重建设计](designs/cuflash-attn-benchmark.md)
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:69:| `paged-infer` | `a32c6df6c587e0da89327aeb10329051c60d8804` | `master` | 37 | Serving 控制面�
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:71:| `cuflash-attn` | `f588314761ea7e9b3c8d194bce90af16b456ff07` | `master` | 101 | CUDA FlashAttenti
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:86:| PINF-001 | `paged-infer` | CPU reference KV Cache 不含 layer 维度，跨层覆盖 |
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:94:- `cuflash-attn` benchmark 文档、构建参数、基线实现和计时方式不一致。
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:117:| `cuflash-attn` 数值与 benchmark 证据 | 20% | 已有较成熟工程外壳，适合形成 ke
+open-infra-ai/docs/organization-audit/2026-08-13/README.md:120:| `paged-infer` 控制面维护 | 5% | 在真实计算后端可用前保持低优先级 |
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:1:# `paged-infer` 仓库审计
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:5:`paged-infer` 适合作为 Serving 控制面和资源状态机练习仓库，而不是�
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:25:- 默认 engine 组装：[`src/engine.rs`](../../../../paged-infer/src/engine.rs#L116)
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:26:- 默认 backend 工厂：[`src/gpu_executor.rs`](../../../../paged-infer/src/gpu_execu
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:27:- decode-first 调度：[`src/scheduler.rs`](../../../../paged-infer/src/scheduler.rs#L
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:28:- 批次描述与执行：[`src/execution_pipeline.rs`](../../../../paged-infer/src/exe
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:29:- 单 owner async engine loop：[`src/server.rs`](../../../../paged-infer/src/server.rs
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:72:见 [`src/cpu_executor.rs`](../../../../paged-infer/src/cpu_executor.rs#L157)。
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:74:每个 token 在 layer 循环中，用同一个 `BlockIdx + offset` 写入 K/V：[`src/
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:82:修复方向见 [设计文档](../designs/paged-infer-correctness.md)。
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:86:API 接受并验证 `temperature` 和 `top_p`：[`src/types/request.rs`](../../../../pa
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:97:每个生成 token 被单独传给 tokenizer decode：[`src/engine.rs`](../../../../pag
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:107:- Chat message 被拼成 `role: content` 文本，而不是模型 chat template：[`sr
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:108:- 非流式响应的 `finish_reason` 固定为 `stop`，不能区分长度上限等状
+open-infra-ai/docs/organization-audit/2026-08-13/repos/paged-infer.md:122:- crate 顶部文档和 CLI about 仍称 mock：[`src/lib.rs`](../../../../paged-infer
+open-infra-ai/LEARNING_PATH.md:11:| 3. 专项深挖 | `cuflash-attn` | FlashAttention 前后向、数值稳定性、性能分析 | 多精度与 causal/non-causa
+open-infra-ai/LEARNING_PATH.md:13:| 5. Serving 控制面 | `paged-infer` | Paged KV、continuous batching、限流、取消、指标 | 分页 KV 已启用：`ti
+open-infra-ai/docs/organization-audit/2026-08-13/designs/paged-infer-correctness.md:1:# `paged-infer` KV Cache 与 API 语义修复设计
+open-infra-ai/docs/organization-audit/2026-08-13/05-engineering-governance.md:26:| `paged-infer` | Rust fmt/clippy/build/test/doc 较完整 | CPU 模型缺少�
+open-infra-ai/docs/organization-audit/2026-08-13/05-engineering-governance.md:28:| `cuflash-attn` | 工程最完整，含 compile matrix、CodeQL、package、GP
+open-infra-ai/docs/organization-audit/2026-08-13/05-engineering-governance.md:72:- `cuflash-attn`：源码 `0.5.0`，最新 tag `v0.3.0`。
+open-infra-ai/docs/organization-audit/2026-08-13/05-engineering-governance.md:95:### `cuflash-attn`
+open-infra-ai/docs/organization-audit/2026-08-13/designs/tiny-llm-correctness.md:7:本设计优先正确性，不同时做性能优化、continuous batching、p
+open-infra-ai/docs/organization-audit/2026-08-13/designs/cuflash-attn-benchmark.md:1:# `cuflash-attn` 基准证据重建设计
+open-infra-ai/docs/organization-audit/2026-08-13/06-execution-roadmap.md:58:### `paged-infer`
+open-infra-ai/docs/organization-audit/2026-08-13/06-execution-roadmap.md:81:## 6. 阶段 4：重建 `cuflash-attn` 性能证据
+open-infra-ai/docs/organization-audit/2026-08-13/00-scope-and-method.md:45:| `paged-infer` | `cargo test --locked`，含 unit/integration/server/doc | 137 项�
+open-infra-ai/docs/organization-audit/2026-08-13/00-scope-and-method.md:47:| `cuflash-attn` | Release、sm_80、关闭测试/示例/benchmark 的静态库编译
+open-infra-ai/docs/organization-audit/2026-08-13/00-scope-and-method.md:89:- `cuflash-attn` 刷新 benchmark 或增加 decode/GQA。
+open-infra-ai/docs/organization-audit/2026-08-13/00-scope-and-method.md:90:- `paged-infer` 接入真实 backend。
+open-infra-ai/PHASE2_PLAN.md:21:   - paged-infer `src/scheduler.rs` 的 P0 行为：已被属性测试锁定。
+open-infra-ai/PHASE2_PLAN.md:37:│     cuflash-attn            FlashAttention 唯一 owner
+open-infra-ai/PHASE2_PLAN.md:41:      paged-infer             分页 KV + continuous batching（后端解耦）
+open-infra-ai/PHASE2_PLAN.md:74:**不变**：org 名 `AICL-Lab`；其余四仓名 `triton-fused-ops`、`cuflash-attn`、`tiny-llm`、`paged-infer` 全部不变�
+open-infra-ai/PHASE2_PLAN.md:86:| cuflash-attn | `src/forward/`、`src/backward/`、`src/kernels/`、FlashDecoding、FA 前后向算法与优化 | GEMM 教程�
+open-infra-ai/PHASE2_PLAN.md:87:| tiny-llm | `kernels/`、`src/`（GGUF/tokenizer/量化/transformer/KV/采样/bench/ffi）、`include/`；单 GPU 运行时与 
+open-infra-ai/PHASE2_PLAN.md:88:| paged-infer | `src/`（scheduler/kv_cache/server/executor）、`tests/`、`benches/`；控制面与后端 trait | 任何 CUDA 
+open-infra-ai/PHASE2_PLAN.md:92:1. **一个算法一个权威 owner**：FlashAttention → cuflash-attn；量化反量化 GEMM → tiny-llm；Paged KV 控制面
+open-infra-ai/PHASE2_PLAN.md:94:3. **跨仓只通过窄 ABI**：paged-infer ↔ tiny-llm 只允许走 `ffi.h` / `tiny_llm_ffi.rs` 的 C ABI，禁止 include 对
+open-infra-ai/PHASE2_PLAN.md:105:| R4 paged-infer executor 策略 1 | ✅ 做（P1） | 配合 R3；策略 2 保留为 fallback feature |
+open-infra-ai/PHASE2_PLAN.md:107:| R6 cuflash-attn 脏文件 commit/revert | ✅ 做（P0） | 同上 |
+open-infra-ai/PHASE2_PLAN.md:110:| R9 paged-infer 改 C++ | ❌ 不做 | Rust + C ABI 是加分项，不是负担 |
+open-infra-ai/PHASE2_PLAN.md:121:  A2 处置 cuflash-attn 未提交改动
+open-infra-ai/PHASE2_PLAN.md:144:  D3 paged-infer TinyLlmExecutor 切换策略 1（保留策略 2 fallback）
+open-infra-ai/PHASE2_PLAN.md:147:  出口门槛：paged-infer + tiny-llm 走真实 block_tables 跑通，输出与 llama.cpp 逐 token 一致
+open-infra-ai/PHASE2_PLAN.md:151:  E2 cuflash-attn：一轮有数字的优化迭代（补 MASTER_PLAN C2）
+open-infra-ai/PHASE2_PLAN.md:228:### 任务 A2：处置 cuflash-attn 未提交改动（P0）
+open-infra-ai/PHASE2_PLAN.md:250:**现状**：academy ahead 2、triton ahead 3、cuflash ahead 4、tiny-llm ahead 19、paged-infer ahead 15。
+open-infra-ai/PHASE2_PLAN.md:264:for d in cuda-foundations triton-fused-ops cuflash-attn tiny-llm paged-infer; do
+open-infra-ai/PHASE2_PLAN.md:365:**范围（已核实）**：`paged-infer/README.md`、`tiny-llm/README.md`、`cuflash-attn/README.md`、`triton-fused-ops/READM
+open-infra-ai/PHASE2_PLAN.md:371:4. 每个被改仓库独立提交 `docs: point links to cuda-foundations`，并跑各自快速验证（triton pytest 不必须�
+open-infra-ai/PHASE2_PLAN.md:462:- paged-infer 的 BlockPool 继续是物理块的唯一 owner；tiny-llm 只做"给定 block_tables 的读写执行器"。
+open-infra-ai/PHASE2_PLAN.md:483:5. `tinyllm_allocate_sequence` / `tinyllm_free_sequence` 在策略 1 下改为 no-op（返回 0），但**保留符号**，文�
+open-infra-ai/PHASE2_PLAN.md:525:### 任务 D3：paged-infer TinyLlmExecutor 切换策略 1
+open-infra-ai/PHASE2_PLAN.md:569:2. paged-infer `README` 路线图 T11 打勾；`DEVELOPMENT_PLAN.md` 状态同步。
+open-infra-ai/PHASE2_PLAN.md:581:### E0 paged-infer：llama.cpp 诚实分歧 fixture（D4 请求 2 补真）
+open-infra-ai/PHASE2_PLAN.md:598:### E2 cuflash-attn：一轮有数字的优化（补 MASTER_PLAN C2）
+open-infra-ai/PHASE2_PLAN.md:618:- ✅ 五仓打并推送 `phase-2-e` tag（cuda-foundations / triton-fused-ops / cuflash-attn /
+open-infra-ai/PHASE2_PLAN.md:619:  tiny-llm / paged-infer）。
+open-infra-ai/PHASE2_PLAN.md:632:- [x] paged-infer 策略 1 通过 3 并发 e2e，与 llama.cpp 对齐，资源守恒测试全绿。
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:15:| PINF-001 | paged-infer | CPU KV Cache key 缺少 layer | 跨层 K/V 相互覆盖 | 静
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:28:| PINF-101 | paged-infer | `temperature/top_p` 被验证但不生效 | API 行为与声�
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:29:| PINF-102 | paged-infer | 单 token decode 直接作为 SSE 文本片段 | byte/BPE 流
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:30:| PINF-103 | paged-infer | Chat 仅拼接角色字符串 | “OpenAI compatible”语义
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:31:| CUFA-101 | cuflash-attn | benchmark 文档与实现计时方法不一致 | 性能结�
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:32:| CUFA-102 | cuflash-attn | 文档使用不存在的 CMake 参数和路径 | 用户无�
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:33:| CUFA-103 | cuflash-attn | naive baseline 声称物化 N²，实际为逐行 shared sco
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:34:| CUFA-104 | cuflash-attn | GPU workflow 依赖可能不存在的自托管 runner | 数�
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:35:| CUFA-105 | cuflash-attn | 历史性能表缺少与当前提交对应的原始 artifact
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:57:| PINF-201 | paged-infer | `GPUExecutorTrait` 命名绑定 GPU，默认却是 CPU | 改�
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:58:| PINF-202 | paged-infer | crate/CLI 仍称 mock，README 称 CPU reference | 统一当�
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:60:| CUFA-201 | cuflash-attn | 当前 API 只支持等头 dense attention | 文档明确；
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:73:  -> paged-infer backend integration
+open-infra-ai/docs/organization-audit/2026-08-13/02-risk-register.md:76:`cuflash-attn` 和 Academy 的修复可与上述主链并行，但任何性能宣传都�
+open-infra-ai/MASTER_PLAN.md:36:| cuflash-attn | `cmake --preset release && cmake --build --preset release` | `ctest --preset release --output-on-failure` |
+open-infra-ai/MASTER_PLAN.md:38:| paged-infer | `cargo build` | `cargo test` |
+open-infra-ai/MASTER_PLAN.md:59:  A5. paged-infer: fmt/clippy 修复 + 执行输出校验 + 内存水位线 + 队头阻塞 + 生命周期钩子 + NaN 校验 + U
+open-infra-ai/MASTER_PLAN.md:64:  B3. cuflash-attn: benchmark 刷新 + 文档更新
+open-infra-ai/MASTER_PLAN.md:69:  C2. cuflash-attn: 一轮优化迭代（双缓冲/异步拷贝 或 warp 级 softmax 归约）
+open-infra-ai/MASTER_PLAN.md:73:  D1. tiny-llm + paged-infer: 分页 KV + continuous batching 端到端
+open-infra-ai/MASTER_PLAN.md:80:  E2. paged-infer: chunked prefill 或优先级调度（选一）✅（2026-08-18, paged-infer@a69b146 选优先级调度）
+open-infra-ai/MASTER_PLAN.md:81:  E3. cuflash-attn: FlashDecoding/Split-KV ✅（2026-08-18, cuflash-attn@9f65df7）
+open-infra-ai/MASTER_PLAN.md:224:### 任务 A5：paged-infer P0 修复包
+open-infra-ai/MASTER_PLAN.md:226:**背景**：paged-infer 有 8 个 P0 任务（T0-T8），分别修复 fmt/clippy、执行输出校验、内存水位线、队�
+open-infra-ai/MASTER_PLAN.md:228:**重要**：这些任务已在 `paged-infer/DEVELOPMENT_PLAN.md` 中详细描述。**请直接按照该文档的 T0-T8 逐任�
+open-infra-ai/MASTER_PLAN.md:232:**每个任务的验收命令**：参见 `paged-infer/DEVELOPMENT_PLAN.md` 中各任务的"验收"部分。
+open-infra-ai/MASTER_PLAN.md:236:cd paged-infer
+open-infra-ai/MASTER_PLAN.md:281:### 任务 B3：cuflash-attn benchmark 刷新
+open-infra-ai/MASTER_PLAN.md:355:### 任务 C2：cuflash-attn 一轮优化迭代
+open-infra-ai/MASTER_PLAN.md:430:### 任务 D1：tiny-llm + paged-infer 分页 KV 端到端
+open-infra-ai/MASTER_PLAN.md:432:**背景**：当前 paged-infer 与 tiny-llm 的对接使用"策略 2"（连续 KV），需要启用"策略 1"（分页 KV）�
+open-infra-ai/MASTER_PLAN.md:434:**注意**：此任务在 `paged-infer/DEVELOPMENT_PLAN.md` 的任务 T11 中描述。**请参考该文档执行**。
+open-infra-ai/MASTER_PLAN.md:438:2. 在 paged-infer 侧实现 `TinyLlmExecutor` 的分页 KV 调用路径
+open-infra-ai/MASTER_PLAN.md:443:cd paged-infer
+open-infra-ai/MASTER_PLAN.md:464:   - OUT：生产级推理运行时（见 tiny-llm）、完整 FlashAttention（见 cuflash-attn）、Serving（见 paged-infer
+open-infra-ai/MASTER_PLAN.md:469:   - OUT：CUDA C++ kernel 学习（见 cuda-foundations）、完整 FlashAttention（见 cuflash-attn）、模型加载与生�
+open-infra-ai/MASTER_PLAN.md:470:   - FlashAttention kernel 标注为"cuflash-attn 的参考实现"
+open-infra-ai/MASTER_PLAN.md:472:3. **cuflash-attn**：
+open-infra-ai/MASTER_PLAN.md:478:   - OUT：调度/批处理/paged KV（见 paged-infer）、FlashAttention 深挖（见 cuflash-attn）、Triton 算子（见 t
+open-infra-ai/MASTER_PLAN.md:480:5. **paged-infer**：
+open-infra-ai/MASTER_PLAN.md:482:   - OUT：计算 kernel（见 tiny-llm）、模型加载（见 tiny-llm）、FlashAttention（见 cuflash-attn）
+open-infra-ai/MASTER_PLAN.md:527:**背景**：triton-fused-ops 中的 FlashAttention 应该定位为 cuflash-attn 的参考实现，而非独立交付物。
+open-infra-ai/MASTER_PLAN.md:537:   > ℹ️ **定位**：Triton FlashAttention 是 [cuflash-attn](https://github.com/open-infra-ai/cuflash-attn)
+open-infra-ai/MASTER_PLAN.md:539:   > 优化叙事见 cuflash-attn。
+open-infra-ai/MASTER_PLAN.md:545:grep -r "参考实现\|reference implementation\|cuflash-attn" triton-fused-ops/README.md triton-fused-ops/triton_ops/kernels/f
+open-infra-ai/MASTER_PLAN.md:581:### 任务 E2：paged-infer chunked prefill 或优先级调度
+open-infra-ai/MASTER_PLAN.md:585:**改动文件**：`paged-infer/src/scheduler.rs`、`paged-infer/tests/`
+open-infra-ai/MASTER_PLAN.md:599:cd paged-infer
+open-infra-ai/MASTER_PLAN.md:608:### 任务 E3：cuflash-attn FlashDecoding / Split-KV
+open-infra-ai/MASTER_PLAN.md:691:- [x] paged-infer: T0-T8 全部完成（2026-08-18 复核：fmt/clippy/cargo test 全绿，215 passed；T0-T8 逐任务见 page
+open-infra-ai/MASTER_PLAN.md:696:- [x] cuflash-attn: benchmark 刷新（2026-08-18, cuflash-attn@52c4bfd，RTX 3060 实测 + head_dim=128）
+open-infra-ai/MASTER_PLAN.md:702:- [x] cuflash-attn: 一轮优化迭代（2026-08-18, PHASE2_NEXT_E E2b：causal 边界块跳过，before/after 见 docs/perform
+open-infra-ai/MASTER_PLAN.md:707:- [x] tiny-llm + paged-infer: 分页 KV 端到端（2026-08-18：策略 1 block_tables + 3 并发 e2e 与 llama.cpp greedy 对�
+open-infra-ai/MASTER_PLAN.md:708:- [x] 5 个 README 都有 IN/OUT 边界（2026-08-18：cuda-foundations@3b73d7b, tiny-llm@ef56907, paged-infer@7d10389, cuflash
+open-infra-ai/MASTER_PLAN.md:722:| cuflash-attn | "我能手推 online softmax、解释为什么不物化 O(N²)、说出我的实现和 FA2/FA3 每一档差距
+open-infra-ai/MASTER_PLAN.md:724:| paged-infer | "计算面（P4）和控制面（P5）通过一个最小 FFI 契约解耦，这本身就是 AI Infra 的分层�
+open-infra-ai/MASTER_PLAN.md:743:第 2 周：A5（paged-infer P0 修复包，T0-T8）
+open-infra-ai/MASTER_PLAN.md:744:第 3 周：B1 → B2（tiny-llm benchmark） + B3 → B4（cuflash-attn + triton benchmark）
+open-infra-ai/MASTER_PLAN.md:760:| paged-infer | `DEVELOPMENT_PLAN.md` | T0-T13（P0 正确性 + P1 补全 + P2 冻结） |
+open-infra-ai/MASTER_PLAN.md:761:| cuflash-attn | `ROADMAP.md` | 阶段 1-4（数据刷新 + 优化迭代 + 推理扩展 + 输出沉淀） |
+open-infra-ai/docs/organization-audit/2026-08-13/repos/cuflash-attn.md:1:# `cuflash-attn` 仓库审计
+open-infra-ai/docs/organization-audit/2026-08-13/repos/cuflash-attn.md:5:`cuflash-attn` 是五仓中工程外壳最成熟的项目，适合继续作为 CUDA ker
+open-infra-ai/docs/organization-audit/2026-08-13/repos/cuflash-attn.md:44:- GPU workflow 明确要求真实 GPU，包含 numerical suite、RapidCheck 和 comput
+open-infra-ai/docs/organization-audit/2026-08-13/repos/cuflash-attn.md:64:见 [`docs/performance/benchmarks.md`](../../../../cuflash-attn/docs/performance/bench
+open-infra-ai/docs/organization-audit/2026-08-13/repos/cuflash-attn.md:77:实际 CMake 使用 `BUILD_BENCHMARKS` 和标准 `CMAKE_CUDA_ARCHITECTURES`：[`CMakeL
+open-infra-ai/docs/organization-audit/2026-08-13/repos/cuflash-attn.md:83:注释称它物化完整 N×N score matrix，但 kernel 实际只为当前 row 使用 
+open-infra-ai/docs/organization-audit/2026-08-13/repos/cuflash-attn.md:85:后续指标又把 N² score matrix 的全局写回和读取计入 HBM bytes：[`bench
+open-infra-ai/docs/organization-audit/2026-08-13/repos/cuflash-attn.md:139:详细方案见 [基准证据重建设计](../designs/cuflash-attn-benchmark.md)。

@@ -25,7 +25,7 @@
   吞吐 120.168→191.384 tok/s（+59.3%）。五组交错配对、原始 JSONL、模型 SHA-256 与
   限制均可[复验](https://github.com/open-infra-ai/tiny-llm/blob/master/docs/performance/results/2026-08-23-cuda-graphs-ab.md)；TTFT 未作改善声明。
 
-### [cuflash-attn](https://github.com/open-infra-ai/cuflash-attn)｜FlashAttention / FlashDecoding CUDA 专项
+### [cuflash](https://github.com/open-infra-ai/cuflash)｜FlashAttention / FlashDecoding CUDA 专项
 
 - 实现 FP32/FP16/BF16 FlashAttention 前后向、FP16/BF16 WMMA 前向和 Split-KV FlashDecoding；
   用 CPU/PyTorch 参考覆盖 causal、非整除形状与多精度数值误差。

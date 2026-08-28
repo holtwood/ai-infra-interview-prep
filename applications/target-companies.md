@@ -8,11 +8,11 @@
 
 | 优先级 | 公司/团队候选 | 研究假设（待 JD 验证） | 需要匹配的作品证据 |
 |--------|---------------|------------------------|--------------------|
-| A | DeepSeek、Moonshot AI、智谱、MiniMax、阶跃星辰 | 自研模型团队可能需要推理运行时、kernel 或 serving 工程 | tiny-llm + cuflash-attn；若偏平台则补 paged-infer |
+| A | DeepSeek、Moonshot AI、智谱、MiniMax、阶跃星辰 | 自研模型团队可能需要推理运行时、kernel 或 serving 工程 | tiny-llm + cuflash；若偏平台则补 paged-serving |
 | A | 字节跳动 Seed/AML、阿里云 PAI/Qwen、腾讯混元 | 大规模推理平台岗位覆盖面可能更广，需区分训练、推理和应用层 | 按 JD 在 v-performance / v-serving 二选一 |
-| A | 硅基流动、无问芯穹等推理基础设施团队 | 产品核心更接近模型部署、推理优化与资源效率 | paged-infer + tiny-llm + 服务评测报告 |
+| A | 硅基流动、无问芯穹等推理基础设施团队 | 产品核心更接近模型部署、推理优化与资源效率 | paged-serving + tiny-llm + 服务评测报告 |
 | B | 百度、华为/昇腾生态、美团、快手、小米 | 可能存在推理引擎、硬件适配或平台岗位，岗位量和栈需逐条确认 | 根据 CUDA/国产算力/Serving JD 定制 |
-| B | NVIDIA 中国及 GPU 软件生态团队 | 匹配度高但通常更看重 C++/CUDA、profiling、英语与硬件深度 | tiny-llm + cuflash-attn + Nsight 证据 |
+| B | NVIDIA 中国及 GPU 软件生态团队 | 匹配度高但通常更看重 C++/CUDA、profiling、英语与硬件深度 | tiny-llm + cuflash + Nsight 证据 |
 
 公司进入 A 级不代表更容易拿 offer，只表示“若存在匹配 JD，作品集有直接证据”。没有完整 JD
 时不写“该公司使用 vLLM/SGLang/自研调度”等未经核实的断言。

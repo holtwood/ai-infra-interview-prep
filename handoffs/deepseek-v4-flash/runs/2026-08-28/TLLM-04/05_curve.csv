@@ -1,0 +1,7 @@
+target,prompt_tokens,ttft_ms,tpot_ms,decode_tok_per_s,resident_delta_mb,graphs_enabled,status
+128,220,308.61,6.251,159.979,4088.16,True,ok
+512,884,1178.5,9.139,109.416,3368,True,ok
+2048,3535,6144.25,20.017,49.9563,3368,True,ok
+4096,7069,20700.3,45.458,21.9984,4117.67,True,ok
+8192,14138,58287.5,69.202,14.4504,3368,True,ok
+16384,,,,,,,FAILED: E2BIG (prompt 147KB > MAX_ARG_STRLEN 128KB)

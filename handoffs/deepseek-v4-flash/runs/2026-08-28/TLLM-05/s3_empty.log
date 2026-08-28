@@ -1,0 +1,9 @@
+Tiny-LLM Inference Engine
+=========================
+GPU: NVIDIA GeForce RTX 3060 Laptop GPU
+Compute Capability: 8.6
+Total Memory: 6143 MB
+SM Count: 30
+Free Memory: 5118 MB
+[2026-08-28 13:42:00.907] [info] [663726] Parsing GGUF file: /tmp/opencode/empty.gguf
+GGUF parse failed: Failed to read GGUF header

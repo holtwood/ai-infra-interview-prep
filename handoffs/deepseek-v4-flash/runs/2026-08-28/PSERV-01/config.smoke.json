@@ -1,0 +1,25 @@
+{
+  "block_size": 16,
+  "max_num_blocks": 1024,
+  "max_batch_size": 8,
+  "max_num_seqs": 8,
+  "max_model_len": 2048,
+  "max_total_tokens": 4096,
+  "memory_threshold": 0.9,
+  "max_retry_attempts": 2,
+  "special_tokens": {
+    "bos": 1,
+    "eos": 2,
+    "pad": 0,
+    "unk": 3
+  },
+  "tokenizer": {
+    "kind": "hugging_face",
+    "path": "/home/shane/github/open-infra-ai/models/tokenizer.json"
+  },
+  "serving": {
+    "host": "127.0.0.1",
+    "port": 3010,
+    "model_name": "qwen2.5-0.5b"
+  }
+}

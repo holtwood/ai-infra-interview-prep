@@ -7,8 +7,8 @@
 
 | 版本 | 定位 | 主打项目顺序 |
 |------|------|-------------|
-| v-performance | LLM Inference Performance / GPU Kernel | tiny-llm → cuflash-attn → cuda-foundations + triton-fused-ops |
-| v-serving | LLM 推理运行时与 Serving | paged-infer → tiny-llm → cuflash-attn |
+| v-performance | LLM Inference Performance / GPU Kernel | tiny-llm → cuflash → cuda-foundations + triton-fused-ops |
+| v-serving | LLM 推理运行时与 Serving | paged-serving → tiny-llm → cuflash |
 
 - 公开草稿分别在 [`resume/resume-performance.zh.md`](resume/resume-performance.zh.md)
   与 [`resume/resume-serving.zh.md`](resume/resume-serving.zh.md)；两版必须共享同一组已核验证据，
@@ -44,7 +44,7 @@
 
 ## GitHub 展示顺序
 
-Profile 首屏 Pin 三项：`tiny-llm`、`paged-infer`、`cuflash-attn`，顺序与两版简历保持一致。
+Profile 首屏 Pin 三项：`tiny-llm`、`paged-serving`、`cuflash`，顺序与两版简历保持一致。
 其余仓库由组织首页导航。个人 Profile 简介直接写 C++ / CUDA / LLM inference systems，并公开
 与 `open-infra-ai` 的成员关系，不解释“转行焦虑”。
 

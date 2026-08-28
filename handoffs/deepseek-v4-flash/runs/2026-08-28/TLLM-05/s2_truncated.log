@@ -1,0 +1,10 @@
+Tiny-LLM Inference Engine
+=========================
+GPU: NVIDIA GeForce RTX 3060 Laptop GPU
+Compute Capability: 8.6
+Total Memory: 6143 MB
+SM Count: 30
+Free Memory: 5118 MB
+[2026-08-28 13:42:00.609] [info] [663720] Parsing GGUF file: /tmp/opencode/truncated.gguf
+[2026-08-28 13:42:00.609] [info] [663720] GGUF header: version=3, tensors=291, metadata_entries=26
+GGUF parse failed: Failed to read metadata value for key: tokenizer.ggml.tokens: Array too large: 151936

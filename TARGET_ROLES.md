@@ -8,7 +8,7 @@
   采样、KV Cache 操作），做端到端性能分析与调优。
 - **核心考察**：CUDA 编程模型与 GPU 架构、访存与计算分析、FlashAttention 系列算法、
   量化 kernel、profiling（Nsight）、与 PyTorch/推理框架的集成。
-- **我的证据**：以 open-infra-ai/tiny-llm 的真实推理链路为旗舰，cuflash-attn
+- **我的证据**：以 open-infra-ai/tiny-llm 的真实推理链路为旗舰，cuflash
   证明 kernel 深度，cuda-foundations 与 triton-fused-ops 提供基础和横向对照
   （详见 [PROJECT_STRATEGY.md](PROJECT_STRATEGY.md)）。
 
@@ -18,7 +18,7 @@
   serving API、压测与容量规划、可观测性。
 - **核心考察**：PagedAttention、调度器状态机、TTFT/TPOT/吞吐/尾延迟指标、
   vLLM/SGLang/TensorRT-LLM 架构、Linux 与网络基础。
-- **我的证据**：open-infra-ai 的 tiny-llm + paged-infer，及 ZEGO 实时系统背景。
+- **我的证据**：open-infra-ai 的 tiny-llm + paged-serving，及 ZEGO 实时系统背景。
 
 ## 可选方向：ML Compiler Engineer
 

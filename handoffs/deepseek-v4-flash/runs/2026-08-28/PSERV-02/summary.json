@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "config": {
+    "engine": "unknown",
+    "mode": "closed",
+    "base_url": "http://127.0.0.1:3010",
+    "model": "qwen2.5-0.5b",
+    "dataset": "/home/shane/github/lessup/ai-infra-interview-prep/handoffs/deepseek-v4-flash/runs/2026-08-28/PSERV-02/dataset_smoke.jsonl",
+    "requests": 6,
+    "concurrency": 2,
+    "rate": null,
+    "max_tokens": 32,
+    "warmup_secs": 3,
+    "timeout_secs": 60,
+    "tokenizer": null
+  },
+  "measurement_wall_secs": 36.099400038,
+  "requests": {
+    "total": 6,
+    "success": 6,
+    "failed": 0,
+    "success_rate_pct": 100.0
+  },
+  "ttft_ms": {
+    "samples": 6,
+    "p50": 11972.995363,
+    "p95": 12166.316682,
+    "p99": 12166.316682
+  },
+  "inter_chunk_latency_ms": {
+    "samples": 0,
+    "p50": null,
+    "p95": null,
+    "p99": null
+  },
+  "itl_ms": null,
+  "tpot_ms": {
+    "samples": 6,
+    "p50": 0.0018880967742124113,
+    "p95": 0.00258735483869039,
+    "p99": 0.00258735483869039
+  },
+  "completion_tokens": {
+    "known_requests": 6,
+    "successful_requests": 6,
+    "coverage_pct": 100.0,
+    "total": 192,
+    "source_counts": {
+      "usage": 6
+    }
+  },
+  "throughput": {
+    "output_tokens_per_second": 5.31864794976901,
+    "successful_requests_per_second": 0.16620774843028155
+  },
+  "errors": {}
+}

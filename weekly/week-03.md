@@ -18,7 +18,7 @@ status: upcoming
 
 ## 本周目标
 
-手推 online softmax 与 FlashAttention 分块公式；把 cuflash-attn 的实现讲成自己的故事。
+手推 online softmax 与 FlashAttention 分块公式；把 cuflash 的实现讲成自己的故事。
 
 ## 先修知识
 
@@ -26,25 +26,25 @@ W2 的 tiling/WMMA；标准 attention 公式。
 
 ## 时间预算
 
-24h：算法手推 6h · cuflash-attn 代码重读+注释 8h · 差分/benchmark 复现 6h · C++/算法 2h · 复盘 2h。
+24h：算法手推 6h · cuflash 代码重读+注释 8h · 差分/benchmark 复现 6h · C++/算法 2h · 复盘 2h。
 
 ## 阅读范围
 
-- open-infra-ai/cuflash-attn：前向 kernel（WMMA 分块、causal 边界跳过）、后向
+- open-infra-ai/cuflash：前向 kernel（WMMA 分块、causal 边界跳过）、后向
 - triton-fused-ops：Triton 版 FlashAttention 对照
 - Fork flash-attention（P2，"五个一"）：只读 `core` 目录前向主链路
 - 论文：FlashAttention (NeurIPS'22)、FlashAttention-2 (2023)
 
 ## 动手实验
 
-1. 重跑 cuflash-attn 的 FP32/FP16/BF16 差分测试与 benchmark，记录口径。
+1. 重跑 cuflash 的 FP32/FP16/BF16 差分测试与 benchmark，记录口径。
 2. 复述 grid.y 65535 越界 bug 的发现、修复与回归测试（真实调试故事）。
 3. 用 Triton 版与 CUDA 版做同口径性能对照。
 
 ## 可验证交付物
 
 - [ ] 手推笔记（online softmax 两参数递推 + 数值稳定性）
-- [ ] cuflash-attn 代码定位文档（kernel 入口、分块结构、WMMA 调用点）
+- [ ] cuflash 代码定位文档（kernel 入口、分块结构、WMMA 调用点）
 - [ ] flash-attention（P2）"五个一"产出
 - [ ] INTERVIEW_MATRIX Q1 达到 B 级以上
 

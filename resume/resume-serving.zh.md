@@ -16,7 +16,7 @@
 
 ## 开源项目
 
-### [paged-infer](https://github.com/open-infra-ai/paged-infer)｜Rust LLM Serving 控制面
+### [paged-serving](https://github.com/open-infra-ai/paged-serving)｜Rust LLM Serving 控制面
 
 - 实现 Paged KV 的 BlockPool / PageTable、continuous batching、准入控制、优先级和 decode reserve，
   通过 OpenAI 兼容 HTTP/SSE API 承载请求生命周期；调度资源守恒由属性测试约束。

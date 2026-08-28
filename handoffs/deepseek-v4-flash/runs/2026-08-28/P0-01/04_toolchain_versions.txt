@@ -1,0 +1,41 @@
+QUERY_TIME_UTC=2026-08-28T04:19:36Z
+### git ###
+git version 2.43.0
+### gh ###
+gh version 2.97.0 (2026-07-31)
+### nvcc ###
+Cuda compilation tools, release 12.0, V12.0.140
+Build cuda_12.0.r12.0/compiler.32267302_0
+### driver/nvidia-smi ###
+Fri Aug 28 12:19:36 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.57.01              KMD Version: 610.88        CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 3060 ...    On  |   00000000:01:00.0  On |                  N/A |
+| N/A   57C    P8             14W /   80W |    3581MiB /   6144MiB |     33%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+### cmake ###
+cmake version 3.28.3
+### rust ###
+rustc 1.90.0 (1159e78c4 2025-09-14)
+cargo 1.90.0 (840b83a10 2025-07-30)
+### python ###
+Python 3.12.3
+### clang-format ###
+zsh:11: command not found: clang-format-18
+clang-format-18 NOT FOUND
+zsh:11: command not found: clang-format
+clang-format NOT FOUND
+### torch (system python) ###
+Traceback (most recent call last):
+### triton (system python) ###
+Traceback (most recent call last):
+### gcc ###
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+### make ###
+GNU Make 4.3

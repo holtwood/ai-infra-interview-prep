@@ -1,0 +1,13 @@
+CHANGELOG.md
+handoffs/deepseek-v4-flash/PROMPT.md
+handoffs/deepseek-v4-flash/TASKS.md
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-03/01_residual_workspace.txt
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-02/01_hits_workspace.txt
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-02/02_hits_personal_repo.txt
+handoffs/deepseek-v4-flash/PLAN.md
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-02/04_hits_meta.txt
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-02/03_files_workspace.txt
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-01/01_local_git_baseline.txt
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-01/03_github_ci.txt
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-02/05_classification.md
+handoffs/deepseek-v4-flash/runs/2026-08-28/P0-01/00_P0-01_summary.md

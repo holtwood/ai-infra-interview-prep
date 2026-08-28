@@ -18,7 +18,7 @@ status: upcoming
 
 ## 本周目标
 
-给 paged-infer 产出第一份系统压测报告（这是 Serving 方向最大证据缺口）。
+给 paged-serving 产出第一份系统压测报告（这是 Serving 方向最大证据缺口）。
 
 ## 先修知识
 
@@ -30,7 +30,7 @@ W7 的调度；Linux 基础。
 
 ## 阅读范围
 
-- paged-infer：HTTP/SSE 接口与现有日志
+- paged-serving：HTTP/SSE 接口与现有日志
 - Cerebras/Perplexity JD 的压测与可观测性要求（见 JOB_MARKET_EVIDENCE.md）
 - Linux perf/火焰图教程 + lectures（Fork）相关讲义
 

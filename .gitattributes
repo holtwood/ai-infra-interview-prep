@@ -1,0 +1,3 @@
+# 执行证据原始输出（命令 stdout、nvidia-smi、rg 命中行等）按原样保存，
+# 其行尾空白/末尾空行来自真实命令输出，不做格式化，git 不做 whitespace 校验。
+handoffs/deepseek-v4-flash/runs/** -whitespace

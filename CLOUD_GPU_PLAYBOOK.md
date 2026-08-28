@@ -109,15 +109,15 @@ CPU / RAM / 内核 / 容器 digest
 | 周次 | 云上重点 | 项目 | 必须产物 |
 |------|---------|------|---------|
 | W1–W2 | Nsight Compute 权限、GEMM/访存 roofline | `cuda-foundations` | 一份 `.ncu-rep` + 指标解释，不只截图 |
-| W3 | FlashAttention shape/因果/GQA 矩阵 | `cuflash-attn` | 正确性矩阵 + roofline + p50/p95 |
+| W3 | FlashAttention shape/因果/GQA 矩阵 | `cuflash` | 正确性矩阵 + roofline + p50/p95 |
 | W4 | 同一算子 CUDA/Triton 对照 | `triton-fused-ops` | 相同 shape/dtype 的速度与误差表 |
 | W5–W6 | clean commit 的 TTFT/TPOT、Graphs A/B、长上下文 | **`tiny-llm`** | schema v2 raw JSON + profiler + 正式报告 |
-| W7–W8 | 并发、Paged KV、开环/闭环/Poisson 负载 | `paged-infer` | `summary.json`、逐请求 JSONL、饱和曲线 |
+| W7–W8 | 并发、Paged KV、开环/闭环/Poisson 负载 | `paged-serving` | `summary.json`、逐请求 JSONL、饱和曲线 |
 | W9 | 两卡 NCCL/topology/TP 最小实验 | 独立实验，不新建产品仓 | nccl-tests + 拓扑 + 通信/计算分解 |
-| W10 | clean commit 复测与外部工具交叉验证 | `tiny-llm` + `paged-infer` | 可放简历的最终数据包 |
+| W10 | clean commit 复测与外部工具交叉验证 | `tiny-llm` + `paged-serving` | 可放简历的最终数据包 |
 | W11–W12 | 仅补证据，不探索新主题 | 全部 | Demo、面试追问、复现检查 |
 
-优先级始终是 `tiny-llm` > `cuflash-attn` > `paged-infer`。`cuda-foundations` 和
+优先级始终是 `tiny-llm` > `cuflash` > `paged-serving`。`cuda-foundations` 和
 `triton-fused-ops` 用来解释基础与对照，不应抢占旗舰项目时间。
 
 ## 5. 评测矩阵与图表
@@ -143,7 +143,7 @@ CPU / RAM / 内核 / 容器 digest
 - 负载：并发 1/2/4/8/16；闭环、固定/Poisson 到达率；
 - 指标：成功率、错误分类、TTFT p50/p95/p99、TPOT/ITL、请求/输出 token 吞吐；
 - 图：吞吐—p95 TTFT Pareto、offered load—goodput、并发—尾延迟、KV 使用率—时间；
-- `paged-infer` 自有 loadgen 是主证据；正式报告再用
+- `paged-serving` 自有 loadgen 是主证据；正式报告再用
   [GuideLLM](https://github.com/vllm-project/guidellm) 对 OpenAI 兼容端点交叉验证。
   [vLLM 官方 benchmark 文档](https://docs.vllm.ai/en/latest/benchmarking/cli/)
   也推荐 GuideLLM 做生产服务评测。

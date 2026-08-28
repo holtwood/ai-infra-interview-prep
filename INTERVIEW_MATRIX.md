@@ -21,9 +21,9 @@ W3 起每周补充当周主题的 3–5 题并自评。此文件是索引 + 示�
 - **追问树**：online softmax 数值稳定性？→ 为什么不能先算完 max？→ causal mask
   如何跳块？→ KV 在 SRAM 放不下怎么办？→ 与 PagedAttention 的关系（正交：一个管
   计算分块，一个管显存分页）。
-- **代码定位**：open-infra-ai/cuflash-attn 前向 kernel（WMMA 分块 + causal 边界跳过）；
+- **代码定位**：open-infra-ai/cuflash 前向 kernel（WMMA 分块 + causal 边界跳过）；
   triton-fused-ops 的 Triton 版对照。
-- **实验证据**：cuflash-attn 的 FP32/FP16/BF16 差分测试与 benchmark（口径见该仓）。
+- **实验证据**：cuflash 的 FP32/FP16/BF16 差分测试与 benchmark（口径见该仓）。
 - **自评**：__待测（W3）__
 
 ## Q2（P0·Kernel）GEMM 优化阶梯，每一步解决什么瓶颈？（W2）
@@ -44,8 +44,8 @@ W3 起每周补充当周主题的 3–5 题并自评。此文件是索引 + 示�
   间接寻址开销大；大→反之（vLLM 默认 16）。
 - **追问树**：copy-on-write 前缀共享怎么实现？→ 抢占式调度两种模式（recompute/
   swap）？→ 与 continuous batching 的调度循环怎么交互？→ TTFT/TPOT 分别受什么影响？
-- **代码定位**：open-infra-ai/paged-infer 分配器与调度器状态机；tiny-llm 分页 KV 策略 1。
-- **实验证据**：paged-infer 3 并发 e2e 对齐记录；W7 补状态机不变量文档。
+- **代码定位**：open-infra-ai/paged-serving 分配器与调度器状态机；tiny-llm 分页 KV 策略 1。
+- **实验证据**：paged-serving 3 并发 e2e 对齐记录；W7 补状态机不变量文档。
 - **自评**：__待测（W7）__
 
 ## Q4（P0·推理）W8A16 量化的误差与性能权衡？（W5）
@@ -65,7 +65,7 @@ W3 起每周补充当周主题的 3–5 题并自评。此文件是索引 + 示�
   开销、隔离 prefill/decode。
 - **追问树**：continuous batching 下新请求何时插入？→ 如何测量（压测口径、warmup、
   分布拟合）？→ 容量规划怎么做（并发-吞吐-延迟曲线找拐点）？
-- **代码定位**：open-infra-ai/paged-infer 调度循环与 HTTP 层。
+- **代码定位**：open-infra-ai/paged-serving 调度循环与 HTTP 层。
 - **实验证据**：W8 压测报告（计划交付）。
 - **自评**：__待测（W8）__
 

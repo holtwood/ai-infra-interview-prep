@@ -16,7 +16,7 @@ review 与合入 commit 为准。
 1. **llama.cpp**：GGUF/parser、量化与 CPU/CUDA 正确性；适合复用 tiny-llm 的字节级
    fixture、差分测试和 sanitizer 经验。
 2. **vLLM / GuideLLM**：benchmark、指标、OpenAI 协议、scheduler 回归；适合复用
-   paged-infer 的 loadgen、SSE 和 summary 经验。
+   paged-serving 的 loadgen、SSE 和 summary 经验。
 3. **FlashInfer**：attention、sampling、量化 kernel 的正确性矩阵与性能回归；先贡献
    最小复现/测试，再碰需要新架构硬件的大 kernel。
 4. **SGLang**：先用 Mini-SGLang 理解 runtime，再选 scheduler/KV/metrics 小问题；

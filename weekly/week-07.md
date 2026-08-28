@@ -18,7 +18,7 @@ status: upcoming
 
 ## 本周目标
 
-把 paged-infer 的调度器状态机与不变量讲清楚，形成"推理系统设计"的完整叙事。
+把 paged-serving 的调度器状态机与不变量讲清楚，形成"推理系统设计"的完整叙事。
 
 ## 先修知识
 
@@ -26,11 +26,11 @@ W5–W6。
 
 ## 时间预算
 
-24h：paged-infer 代码重读 8h · 状态机/不变量文档 6h · 对照阅读 4h · C++/算法 2h · 复盘 4h。
+24h：paged-serving 代码重读 8h · 状态机/不变量文档 6h · 对照阅读 4h · C++/算法 2h · 复盘 4h。
 
 ## 阅读范围
 
-- open-infra-ai/paged-infer（主线）：block 分配器、调度循环、HTTP 控制面
+- open-infra-ai/paged-serving（主线）：block 分配器、调度循环、HTTP 控制面
 - Fork mini-sglang（P1）：对照调度主循环
 - Fork vllm（P2，"五个一"）：core scheduler 与 block manager
 - Fork sglang（P2，"五个一"）：scheduler 与 router

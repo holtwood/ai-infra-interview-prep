@@ -1,0 +1,60 @@
+QUERY_TIME_UTC=2026-08-28T04:18:46Z
+########## open-infra-ai ##########
+function not defined: description/0
+--- last commit on default branch ---
+{"date":"2026-08-27T07:55:31Z","msg":"docs(interview): 补漏 PAGED_INFER_TINY_LLM_STRATEGY → PAGED_SERVING_TINY_LLM_STRATEGY","sha":"c9f8a1306d"}
+--- pages ---
+{"message":"Not Found","documentation_url":"https://docs.github.com/rest/pages/pages#get-a-apiname-pages-site","status":"404"}gh: Not Found (HTTP 404)
+NO_PAGES
+########## .github ##########
+function not defined: description/0
+--- last commit on default branch ---
+{"date":"2026-08-24T02:19:18Z","msg":"docs(profile): 补充 AI Infra 维护者身份","sha":"366d407869"}
+--- pages ---
+{"message":"Not Found","documentation_url":"https://docs.github.com/rest/pages/pages#get-a-apiname-pages-site","status":"404"}gh: Not Found (HTTP 404)
+NO_PAGES
+########## tiny-llm ##########
+function not defined: description/0
+--- last commit on default branch ---
+{"date":"2026-08-27T05:25:00Z","msg":"fix(cuda): 适配 CUDA 13 移除的 cudaDeviceProp 时钟字段","sha":"f9d4b99fd6"}
+--- pages ---
+{"source":{"branch":"master","path":"/"},"status":null,"url":"https://open-infra-ai.github.io/tiny-llm/"}
+########## cuflash ##########
+function not defined: description/0
+--- last commit on default branch ---
+{"date":"2026-08-27T07:42:09Z","msg":"release: prepare v0.6.0","sha":"d53a5301bf"}
+--- pages ---
+{"source":{"branch":"master","path":"/"},"status":null,"url":"https://open-infra-ai.github.io/cuflash/"}
+########## paged-serving ##########
+function not defined: description/0
+--- last commit on default branch ---
+{"date":"2026-08-27T07:44:20Z","msg":"refactor(tests): 测试用例 ID 前缀 PINF-* → PSERV-*（随项目改名）","sha":"080f26f91f"}
+--- pages ---
+{"source":{"branch":"master","path":"/"},"status":null,"url":"https://open-infra-ai.github.io/paged-serving/"}
+########## triton-fused-ops ##########
+function not defined: description/0
+--- last commit on default branch ---
+{"date":"2026-08-23T14:58:25Z","msg":"release: prepare v2.0.1","sha":"5764758506"}
+--- pages ---
+{"message":"Not Found","documentation_url":"https://docs.github.com/rest/pages/pages#get-a-apiname-pages-site","status":"404"}gh: Not Found (HTTP 404)
+NO_PAGES
+########## cuda-foundations ##########
+function not defined: description/0
+--- last commit on default branch ---
+{"date":"2026-08-23T14:22:41Z","msg":"fix: stabilize CUDA tests CI and documentation","sha":"28e070bb2f"}
+--- pages ---
+{"source":{"branch":"master","path":"/"},"status":null,"url":"https://open-infra-ai.github.io/cuda-foundations/"}
+########## open-infra-ai ##########
+{"default":"master","desc":"AI Infra 学习作品集：CUDA/Triton/FlashAttention、LLM 推理运行时、Serving、跨仓契约与证据导航","latestRelease":{"published":null,"tag":null},"name":"open-infra-ai","topics":["active","ai-infra","learning-path","portfolio"],"url":"https://github.com/open-infra-ai/open-infra-ai"}
+########## .github ##########
+cannot iterate over: null
+########## tiny-llm ##########
+{"default":"master","desc":"CUDA/C++ LLM 推理运行时：GGUF、W8A16、tokenizer、Paged KV、CUDA Graph 与可复现基准","latestRelease":{"published":"2026-04-21T19:41:59Z","tag":"v2.0.1"},"name":"tiny-llm","topics":["cpp","cuda","kv-cache","quantization","cmake","nvidia","tensor-core","transformer","llm-inference","w8a16","active","ai-infra","inference-engine","llm"],"url":"https://github.com/open-infra-ai/tiny-llm"}
+########## cuflash ##########
+{"default":"master","desc":"cuflash — FlashAttention from scratch in CUDA C++: scalar → WMMA tensor-core forward, FlashDecoding/Split-KV, Roofline analysis. FP16/BF16/FP32 fwd/bwd, sm_70–sm_90.","latestRelease":{"published":"2026-08-27T07:46:01Z","tag":"v0.6.0"},"name":"cuflash","topics":["cuda","flash-attention","transformer","cuda-kernel","nvidia","attention","gpu","llm","c-plus-plus","openspec","reference-implementation","attention-mechanism","cpp","deep-learning","flashattention","gpu-computing","hpc","pytorch","ai-infra","stable"],"url":"https://github.com/open-infra-ai/cuflash"}
+########## paged-serving ##########
+{"default":"master","desc":"Rust LLM Serving 控制面：Paged KV、continuous batching、OpenAI SSE、C ABI 后端与可信压测","latestRelease":{"published":"2026-04-16T02:22:34Z","tag":"v0.1.0"},"name":"paged-serving","topics":["continuous-batching","gpu-computing","llm","llm-inference","paged-attention","rust","high-performance","inference-engine","kv-cache","machine-learning","systems-programming","transformer","serving","vllm","inference","active","ai-infra","llm-serving"],"url":"https://github.com/open-infra-ai/paged-serving"}
+########## triton-fused-ops ##########
+{"default":"master","desc":"面向 Transformer 推理的可验证 Triton 融合算子与 torch.library 集成","latestRelease":{"published":"2026-08-23T15:00:31Z","tag":"v2.0.1"},"name":"triton-fused-ops","topics":["cuda","deep-learning","gpu-computing","operator-fusion","python","pytorch","triton","acceleration","gpu-kernels","high-performance","inference","kernel-fusion","llm","nvidia","rmsnorm","rotary-position-embedding","transformer-inference","llm-inference","ai-infra","stable"],"url":"https://github.com/open-infra-ai/triton-fused-ops"}
+########## cuda-foundations ##########
+{"default":"master","desc":"可验证的 CUDA 学习主线：SGEMM、通用 GPU 算子、性能优化与轻量推理组件","latestRelease":{"published":"2026-04-21T13:58:55Z","tag":"v1.0.0"},"name":"cuda-foundations","topics":["cuda","hpc","sgemm","tutorial","education","gemm","cuda-programming","tensor-core","cplusplus","gpu-programming","inference-engine","kernel-optimization","active","ai-infra","gpu-kernel","learning"],"url":"https://github.com/open-infra-ai/cuda-foundations"}

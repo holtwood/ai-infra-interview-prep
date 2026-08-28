@@ -1,7 +1,7 @@
 # 简历目录
 
-- `resume-performance.zh.md`：一页性能/Kernel 版，工作经历后只讲 `tiny-llm` 与 `cuflash-attn`。
-- `resume-serving.zh.md`：一页 Serving/Runtime 版，工作经历后只讲 `paged-infer` 与 `tiny-llm`。
+- `resume-performance.zh.md`：一页性能/Kernel 版，工作经历后只讲 `tiny-llm` 与 `cuflash`。
+- `resume-serving.zh.md`：一页 Serving/Runtime 版，工作经历后只讲 `paged-serving` 与 `tiny-llm`。
 - 真实投递版请复制为 `resume-*.local.zh.md` 后填写手机号、微信、现居地等信息；
   `*.local.*` 已被 `.gitignore` 排除。
 

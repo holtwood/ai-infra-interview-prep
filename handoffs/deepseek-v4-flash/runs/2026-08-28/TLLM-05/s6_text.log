@@ -1,0 +1,9 @@
+Tiny-LLM Inference Engine
+=========================
+GPU: NVIDIA GeForce RTX 3060 Laptop GPU
+Compute Capability: 8.6
+Total Memory: 6143 MB
+SM Count: 30
+Free Memory: 5118 MB
+[2026-08-28 13:42:23.731] [info] [663980] Parsing GGUF file: /tmp/opencode/notgguf.gguf
+GGUF parse failed: Invalid GGUF magic number. Expected 0x1179993927, got 0x1936287860

@@ -57,7 +57,7 @@
 ## 对时间权重的推导（→ TOPIC_WEIGHTS.md）
 
 - CUDA+Profiling 22%：CUDA 8/23 + 性能分析 11/23 双高频，且是本人短板（Nsight）。
-- 推理运行时 22%：9/23 高频，且已有 tiny-llm/paged-infer 证据可放大。
+- 推理运行时 22%：9/23 高频，且已有 tiny-llm/paged-serving 证据可放大。
 - 项目证据 18%：所有岗位都要求"可复现 benchmark"，证据包是一票否决项。
 - Triton/PyTorch 集成 10%：显式提及仅 2/23，但作为 kernel 岗加分项保留。
 - Serving/Linux/通信 12%：7/23 压测可观测性 + 4/23 分布式（理论）。

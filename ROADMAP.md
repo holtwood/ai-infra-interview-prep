@@ -12,12 +12,12 @@
 |----|------|---------|---------|
 | 1 | 08-24～08-30 | 基线评估、CUDA 模型、环境与性能工具 | 能力基线自评、CUDA 问答、可复现基准（cuda-foundations） |
 | 2 | 08-31～09-06 | GEMM、访存、Tiling、共享内存、WMMA | 优化阶梯讲解 + Nsight Compute 性能报告 |
-| 3 | 09-07～09-13 | Attention、Online Softmax、FlashAttention | 手推公式、cuflash-attn 代码定位、正确性实验复述 |
+| 3 | 09-07～09-13 | Attention、Online Softmax、FlashAttention | 手推公式、cuflash 代码定位、正确性实验复述 |
 | 4 | 09-14～09-20 | Triton、PyTorch 自定义算子 | 至少一个 kernel 的 CUDA/Triton 对照报告 |
 | 5 | 09-21～09-27 | Transformer 推理、量化、模型加载 | tiny-llm 主调用链讲解 + 白板图 |
 | 6 | 09-28～10-04 | KV Cache、Decode、CUDA Graph、性能指标 | TTFT/TPOT/吞吐/显存指标报告 + CUDA Graph 对照实验 |
-| 7 | 10-05～10-11 | Paged KV、Continuous Batching、调度 | paged-infer 状态机与不变量讲解 |
-| 8 | 10-12～10-18 | HTTP/SSE、压测、可观测性、Linux 调优 | paged-infer 压测报告与故障分析 |
+| 7 | 10-05～10-11 | Paged KV、Continuous Batching、调度 | paged-serving 状态机与不变量讲解 |
+| 8 | 10-12～10-18 | HTTP/SSE、压测、可观测性、Linux 调优 | paged-serving 压测报告与故障分析 |
 | 9 | 10-19～10-25 | NCCL、并行策略、通信/计算重叠 | 理论学习与单机模拟实验；**不得伪造多 GPU 数据** |
 | 10 | 10-26～11-01 | 项目证据包、简历项目、GitHub 展示 | 两个主项目 STAR 条目 + Demo 脚本 |
 | 11 | 11-02～11-08 | CUDA/C++/系统设计模拟面试 | 至少两次有评分的完整模拟 |

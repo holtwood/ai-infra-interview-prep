@@ -1,0 +1,10 @@
+Paged-Serving
+===========
+Configuration:
+  Block size: 16
+  Max blocks: 1024
+  Max batch size: 8
+  Max sequences: 8
+
+Server mode: 127.0.0.1:3010
+Model name: qwen2.5-0.5b

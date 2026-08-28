@@ -1,0 +1,2 @@
+zsh:5: argument list too long: ./build/tiny_llm_demo
+exit=127 (127=E2BIG 参数超限)

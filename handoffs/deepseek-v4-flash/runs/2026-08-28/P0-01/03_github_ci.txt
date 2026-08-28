@@ -1,0 +1,57 @@
+########## open-infra-ai runs ##########
+########## .github runs ##########
+########## tiny-llm runs ##########
+completed	failure	fix(cuda): 适配 CUDA 13 移除的 cudaDeviceProp 时钟字段	CI	master	push	33042427022	19s	2026-08-27T05:25:05Z
+completed	success	test(ci): skip GPU-only cases without a device	CI	master	push	32648399773	9m9s	2026-08-23T15:23:30Z
+completed	failure	ci: fix CUDA setup under Node.js 24	CI	master	push	32647721909	9m56s	2026-08-23T15:10:33Z
+completed	failure	style: align sources with clang-format 18	CI	master	push	32647388792	25s	2026-08-23T15:04:17Z
+completed	success	docs(performance): publish clean CUDA Graph A/B evidence	GitHub Pages	master	push	32647106519	1m5s	2026-08-23T14:59:03Z
+completed	failure	docs(performance): publish clean CUDA Graph A/B evidence	CI	master	push	32647106485	22s	2026-08-23T14:59:03Z
+completed	success	docs(kv-cache): document paged KV strategy 1	GitHub Pages	master	push	32540040823	56s	2026-08-22T00:20:56Z
+completed	failure	chore(build/misc): cuda arch 70, sizeof semantics, drop redundant cast	CI	master	push	32540011924	26s	2026-08-22T00:20:26Z
+completed	success	docs: normalize org links to open-infra-ai	GitHub Pages	master	push	32498297506	49s	2026-08-21T15:34:05Z
+completed	failure	docs(kv-cache): document getUsedMemory slot-based accounting	CI	master	push	32461161099	17s	2026-08-21T08:00:22Z
+########## cuflash runs ##########
+completed	success	release: prepare v0.6.0	Release	v0.6.0	push	33050839769	4m3s	2026-08-27T07:42:19Z
+completed	success	release: prepare v0.6.0	Docs (GitHub Pages)	master	push	33050832603	47s	2026-08-27T07:42:13Z
+completed	success	release: prepare v0.6.0	CodeQL Security Analysis	master	push	33050832584	2m58s	2026-08-27T07:42:13Z
+completed	success	release: prepare v0.6.0	CI	master	push	33050832582	1m8s	2026-08-27T07:42:13Z
+completed	success	refactor(rename): full rename cuflash_attn → cuflash across build and…	CodeQL Security Analysis	master	push	33049809860	2m58s	2026-08-27T07:27:42Z
+completed	success	refactor(rename): full rename cuflash_attn → cuflash across build and…	CI	master	push	33049809827	4m3s	2026-08-27T07:27:42Z
+completed	success	refactor(rename): full rename cuflash_attn → cuflash across build and…	Docs (GitHub Pages)	master	push	33049809815	1m1s	2026-08-27T07:27:42Z
+completed	success	chore(rename): repository renamed cuflash-attn → cuflash (display lay…	CodeQL Security Analysis	master	push	33049252243	2m48s	2026-08-27T07:19:34Z
+completed	success	chore(rename): repository renamed cuflash-attn → cuflash (display lay…	Docs (GitHub Pages)	master	push	33049252138	57s	2026-08-27T07:19:34Z
+completed	success	chore(rename): repository renamed cuflash-attn → cuflash (display lay…	CI	master	push	33049252130	4m1s	2026-08-27T07:19:34Z
+########## paged-serving runs ##########
+completed	failure	refactor(tests): 测试用例 ID 前缀 PINF-* → PSERV-*（随项目改名）	CI	master	push	33051255489	43s	2026-08-27T07:48:16Z
+completed	success	feat(serving): 固化正式评测结果包	CI	master	push	32682691300	1m21s	2026-08-24T02:19:33Z
+completed	success	fix: make serving metrics and FFI contracts reliable	CI	master	push	32647106967	2m22s	2026-08-23T14:59:03Z
+completed	success	docs: point LEARNING_PATH link to meta repo; status active	CI	master	push	32498823349	1m59s	2026-08-21T15:39:58Z
+completed	success	docs: normalize org links to open-infra-ai	CI	master	push	32498401012	1m48s	2026-08-21T15:35:13Z
+completed	success	fix: prevent engine_loop busy-wait on unschedulable prompts (B12 serv…	CI	master	push	32462409377	2m8s	2026-08-21T08:16:21Z
+completed	success	test: add regression tests for B2 KV reclamation, B4 priority passthr…	CI	master	push	32460827263	1m53s	2026-08-21T07:55:56Z
+completed	success	fix: resolve 15 verified bugs from external audit (B1-B17)	CI	master	push	32459669656	1m48s	2026-08-21T07:40:29Z
+completed	success	docs: clarify tokenizer adapter boundary and serving diagram	CI	master	push	32214550817	1m0s	2026-08-19T04:06:44Z
+completed	success	docs: mark paged KV strategy 1 as the default backend path	CI	master	push	32206908991	1m0s	2026-08-19T01:59:21Z
+########## triton-fused-ops runs ##########
+completed	success	release: prepare v2.0.1	CI	v2.0.1	push	32647181330	1m7s	2026-08-23T15:00:24Z
+completed	success	release: prepare v2.0.1	CI	master	push	32647106354	1m5s	2026-08-23T14:59:02Z
+completed	skipped	refactor: simplify runtime surface and validation seam (#2)	Deploy GitHub Pages	master	push	26386209203	1s	2026-05-25T06:10:47Z
+completed	success	refactor: simplify runtime surface and validation seam (#2)	CI (docs)	master	push	26386209167	31s	2026-05-25T06:10:47Z
+completed	failure	refactor: simplify runtime surface and validation seam (#2)	CI	master	push	26386209157	1m18s	2026-05-25T06:10:47Z
+completed	failure	docs: fix inaccurate module names and API references in Git Pages	CI	master	push	26279211997	1m13s	2026-05-22T09:14:29Z
+completed	failure	refactor: simplify runtime surface and validation seam (#2)	CI	master	push	26277715893	1m20s	2026-05-22T08:41:37Z
+completed	skipped	refactor: simplify runtime surface and validation seam (#2)	Deploy GitHub Pages	master	push	26277715890	1s	2026-05-22T08:41:37Z
+completed	success	refactor: simplify runtime surface and validation seam (#2)	CI (docs)	master	push	26277715866	31s	2026-05-22T08:41:37Z
+completed	skipped	refactor: simplify runtime surface and validation seam (#2)	Deploy GitHub Pages	master	push	26265244446	1s	2026-05-22T02:39:22Z
+########## cuda-foundations runs ##########
+completed	success	fix: stabilize CUDA tests CI and documentation	Deploy Pages	master	push	32647106341	1m6s	2026-08-23T14:59:02Z
+completed	success	fix: stabilize CUDA tests CI and documentation	CI	master	push	32647106338	3m21s	2026-08-23T14:59:02Z
+completed	success	fix: 2026-08-22 bug audit batch (wmma/vec alignment, spmm thread map,…	Deploy Pages	master	push	32551982348	55s	2026-08-22T04:32:46Z
+completed	failure	fix: 2026-08-22 bug audit batch (wmma/vec alignment, spmm thread map,…	CI	master	push	32551982344	2m7s	2026-08-22T04:32:46Z
+completed	failure	docs: fix HOMEPAGE_URL to open-infra-ai	CI	master	push	32540019754	1m30s	2026-08-22T00:20:34Z
+completed	success	fix: 2026-08-21 bug audit batch (deadlock, pool leaks, rope bounds, f…	Deploy Pages	master	push	32539919694	1m9s	2026-08-22T00:18:49Z
+completed	failure	fix: 2026-08-21 bug audit batch (deadlock, pool leaks, rope bounds, f…	CI	master	push	32539919606	1m31s	2026-08-22T00:18:49Z
+completed	success	docs: move LEARNING_PATH.md to meta repo; status active	Deploy Pages	master	push	32498772980	1m5s	2026-08-21T15:39:24Z
+completed	failure	docs: move LEARNING_PATH.md to meta repo; status active	CI	master	push	32498772953	1m58s	2026-08-21T15:39:24Z
+completed	failure	docs: normalize org links to open-infra-ai	CI	master	push	32498374789	1m32s	2026-08-21T15:34:57Z

@@ -1,0 +1,20 @@
+Tiny-LLM Inference Engine
+=========================
+GPU: NVIDIA GeForce RTX 3060 Laptop GPU
+Compute Capability: 8.6
+Total Memory: 6143 MB
+SM Count: 30
+Free Memory: 5118 MB
+[2026-08-28 13:42:22.445] [info] [663965] Parsing GGUF file: /tmp/opencode/truncated_tensors.gguf
+[2026-08-28 13:42:22.445] [info] [663965] GGUF header: version=3, tensors=291, metadata_entries=26
+[2026-08-28 13:42:22.504] [info] [663965] GGUF parsing complete. Data offset: 5947744
+[2026-08-28 13:42:22.505] [info] [663965] Extracted model config: hidden_dim=896, num_layers=24, num_heads=14, num_kv_heads=2, vocab_size=151936
+[2026-08-28 13:42:22.644] [info] [663965] Loading model from: /tmp/opencode/truncated_tensors.gguf
+[2026-08-28 13:42:22.644] [info] [663965] Loading GGUF model from: /tmp/opencode/truncated_tensors.gguf
+[2026-08-28 13:42:22.644] [info] [663965] Parsing GGUF file: /tmp/opencode/truncated_tensors.gguf
+[2026-08-28 13:42:22.644] [info] [663965] GGUF header: version=3, tensors=291, metadata_entries=26
+[2026-08-28 13:42:22.693] [info] [663965] GGUF parsing complete. Data offset: 5947744
+[2026-08-28 13:42:22.694] [info] [663965] Extracted model config: hidden_dim=896, num_layers=24, num_heads=14, num_kv_heads=2, vocab_size=151936
+[2026-08-28 13:42:22.694] [info] [663965] Model config: hidden_dim=896, num_layers=24, vocab_size=151936
+[2026-08-28 13:42:22.822] [error] [663965] Failed to load GGUF model: token embedding: Failed to read tensor data
+Model load failed: token embedding: Failed to read tensor data

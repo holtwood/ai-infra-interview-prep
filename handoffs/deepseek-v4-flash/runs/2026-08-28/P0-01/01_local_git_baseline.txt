@@ -1,0 +1,112 @@
+########## open-infra-ai ##########
+--- status --short --branch ---
+## master...origin/master
+--- HEAD ---
+5e0f57066846f410fc08a3209970de48d986183d
+--- remote -v ---
+origin	https://github.com/open-infra-ai/open-infra-ai.git (fetch)
+origin	https://github.com/open-infra-ai/open-infra-ai.git (push)
+--- branch -vv ---
+* master 5e0f570 [origin/master] docs: publish verified tiny-llm performance evidence
+--- tags (latest 5) ---
+phase-i-ready
+phase-3-interview
+
+########## .github ##########
+--- status --short --branch ---
+## main...origin/main
+--- HEAD ---
+366d40786953ec0611b75a2c1bd1d243e1213747
+--- remote -v ---
+origin	https://github.com/open-infra-ai/.github.git (fetch)
+origin	https://github.com/open-infra-ai/.github.git (push)
+--- branch -vv ---
+* main 366d407 [origin/main] docs(profile): 补充 AI Infra 维护者身份
+--- tags (latest 5) ---
+
+########## tiny-llm ##########
+--- status --short --branch ---
+## master...origin/master
+?? .zcode/
+--- HEAD ---
+f9d4b99fd643a1d863a395a2a2ab5ae06e90e328
+--- remote -v ---
+origin	https://github.com/open-infra-ai/tiny-llm.git (fetch)
+origin	https://github.com/open-infra-ai/tiny-llm.git (push)
+--- branch -vv ---
+* master f9d4b99 [origin/master] fix(cuda): 适配 CUDA 13 移除的 cudaDeviceProp 时钟字段
+--- tags (latest 5) ---
+phase-3-docs
+phase-2-e
+phase-2-d
+phase-2-c
+phase-1-complete
+
+########## cuflash-attn ##########
+--- status --short --branch ---
+## master...origin/master
+--- HEAD ---
+d53a5301bf5e014f1f258db41e2a9d2a1252d00d
+--- remote -v ---
+origin	https://github.com/open-infra-ai/cuflash-attn.git (fetch)
+origin	https://github.com/open-infra-ai/cuflash-attn.git (push)
+--- branch -vv ---
+* master d53a530 [origin/master] release: prepare v0.6.0
+--- tags (latest 5) ---
+v0.6.0
+v0.5.1
+phase-3-docs
+phase-2-e
+phase-1-complete
+
+########## paged-infer ##########
+--- status --short --branch ---
+## master...origin/master
+--- HEAD ---
+080f26f91fb339f85b54d338cfed1b68d59190c7
+--- remote -v ---
+origin	https://github.com/open-infra-ai/paged-infer.git (fetch)
+origin	https://github.com/open-infra-ai/paged-infer.git (push)
+--- branch -vv ---
+* master 080f26f [origin/master] refactor(tests): 测试用例 ID 前缀 PINF-* → PSERV-*（随项目改名）
+--- tags (latest 5) ---
+phase-3-docs
+phase-2-e
+phase-2-d
+phase-1-complete
+v0.2.0
+
+########## triton-fused-ops ##########
+--- status --short --branch ---
+## master...origin/master
+--- HEAD ---
+57647585065b86519aa67f223be03918af3b4ac2
+--- remote -v ---
+origin	https://github.com/open-infra-ai/triton-fused-ops.git (fetch)
+origin	https://github.com/open-infra-ai/triton-fused-ops.git (push)
+--- branch -vv ---
+* master 5764758 [origin/master] release: prepare v2.0.1
+--- tags (latest 5) ---
+v2.0.1
+phase-3-docs
+phase-2-e
+phase-1-complete
+v2.0.0
+
+########## cuda-foundations ##########
+--- status --short --branch ---
+## master...origin/master
+--- HEAD ---
+28e070bb2fd5cae64649210b6fdfe50b5a4754ee
+--- remote -v ---
+origin	https://github.com/open-infra-ai/cuda-foundations.git (fetch)
+origin	https://github.com/open-infra-ai/cuda-foundations.git (push)
+--- branch -vv ---
+* master 28e070b [origin/master] fix: stabilize CUDA tests CI and documentation
+--- tags (latest 5) ---
+phase-3-docs
+phase-2-e
+phase-2-d
+phase-2-rename
+phase-1-complete
+

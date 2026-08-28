@@ -88,7 +88,7 @@ make progress-write # 统计并写回 progress-tracker / frontmatter / README �
 ## 核心事实（2026-08-19 审计）
 
 - 目标：GPU Kernel / LLM Inference Performance Engineer（主）、Serving（次）、编译器（可选）。
-- 推理加速面试旗舰是 **tiny-llm**；`cuflash-attn` 证明 kernel 深度，`paged-infer`
+- 推理加速面试旗舰是 **tiny-llm**；`cuflash` 证明 kernel 深度，`paged-serving`
   证明 serving/调度能力，另外两仓提供基础与 Triton 对照。
 - 项目已定，不再为单个优化点拆出重复玩具仓；新想法先进入现有仓的实验、benchmark
   或上游 issue/PR。详见 [PROJECT_STRATEGY.md](PROJECT_STRATEGY.md)。

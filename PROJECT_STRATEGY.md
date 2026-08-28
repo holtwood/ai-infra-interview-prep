@@ -7,16 +7,16 @@
 ## 核心决策
 
 - **推理加速旗舰：`open-infra-ai/tiny-llm`**。
-- **Kernel 深挖：`open-infra-ai/cuflash-attn`**。
-- **Serving/调度扩展：`open-infra-ai/paged-infer`**。
+- **Kernel 深挖：`open-infra-ai/cuflash`**。
+- **Serving/调度扩展：`open-infra-ai/paged-serving`**。
 - `cuda-foundations` 与 `triton-fused-ops` 是基础和横向对照，`fq-compressor` 只证明
   C++/并发/工程质量。
-- 技术仓名称已被简历与证据链接引用，保持冻结。`paged-infer` 对“分页 KV + 推理控制面”
+- 技术仓名称已被简历与证据链接引用，保持冻结。`paged-serving` 对“分页 KV + 推理控制面”
   的表达足够准确，不为追求听起来更大而重命名。
 
 ### 命名结论
 
-- `cuflash-attn` 并不奇怪：slug 直接表达 CUDA + FlashAttention，搜索语义明确；
+- `cuflash` 并不奇怪：slug 直接表达 CUDA + FlashAttention，搜索语义明确；
   README 展示名使用更易读的 **CuFlash-Attn**。只有项目离开 Attention 边界时才需要改名。
 - `triton-fused-ops` 相对通用，但与 RMSNorm+RoPE、Gated MLP、FlashAttention 和
   `torch.library` 的横向对照职责一致；README 首屏用“Transformer 推理融合算子”收紧
@@ -60,7 +60,7 @@ CUDA Graph、真实模型正确性和端到端指标；优化前后能落到同�
    必须使用外部采样器并记录采样频率，不把离散 `cudaMemGetInfo` 差值冒充峰值；
 5. 外部基线必须同模型、同 prompt、同采样、同输出长度，并在不能同量化时醒目标注限制。
 
-## 项目 2：Kernel 深挖 = `cuflash-attn`
+## 项目 2：Kernel 深挖 = `cuflash`
 
 **一句话**：从零实现 FlashAttention 前后向与 FlashDecoding，覆盖 FP32/FP16/BF16、
 WMMA、causal 边界和非整除形状。
@@ -71,7 +71,7 @@ WMMA、causal 边界和非整除形状。
 **下一阶段证据**：选择 4–6 个能代表 prefill/decode 的形状，补 Nsight Compute 报告；在同一
 硬件上对比 PyTorch SDPA/官方 FlashAttention（能安装时）并保留更慢的形状，不只展示赢家。
 
-## 项目 3：Serving 扩展 = `paged-infer`
+## 项目 3：Serving 扩展 = `paged-serving`
 
 **一句话**：Rust 控制面负责 Paged KV、continuous batching、调度状态机、限流、取消、
 OpenAI 兼容 HTTP/SSE 和服务评测，经 C ABI 接 `tiny-llm` 真实后端。
