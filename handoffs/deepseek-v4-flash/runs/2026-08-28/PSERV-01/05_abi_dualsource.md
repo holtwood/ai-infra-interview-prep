@@ -26,3 +26,15 @@ pub struct TinyLlmConfig {
     /// 该字段使 `TinyLlmConfig` 变为 9 个 int 的 repr(C) 布局（ABI v2）。
     pub max_num_blocks: i32,
 }
+
+## 核对结论（2026-08-28 review 补录，机器可复算）
+
+- `TinyLlmConfig` 字段顺序：C（ffi.h）⇄ Rust（tiny_llm_ffi.rs）**逐项一致（ORDER MATCH: True）**：
+  hidden_dim, num_layers, num_heads, num_kv_heads, head_dim, vocab_size, block_size,
+  max_batch_size, max_num_blocks
+- 函数符号集合 **一致（SET MATCH: True）**：tinyllm_load / tinyllm_step /
+  tinyllm_allocate_sequence / tinyllm_free_sequence / tinyllm_free
+- 参数类型对应：*mut c_char↔char*、is_prefill *const u8↔unsigned char*、
+  next_tokens *mut c_int↔int*、logprobs *mut f32↔float*
+- 复算方法：从本文件两份摘录按上述列表核对；Rust 侧另有布局守卫测试随 cargo test 通过
+- 结论：ABI 双源一致，无契约漂移（对应 TASKS PSERV-01 验收）

@@ -81,8 +81,10 @@ for k, v in sorted(per.items()):
     v = sorted(v)
     p50 = v[min(len(v)-1, round(0.5*(len(v)-1)))]
     p95 = v[min(len(v)-1, round(0.95*(len(v)-1)))]
-    rows.append({"benchmark": k, "samples": len(v), "mean_ms": round(sum(v)/len(v)/1e6, 4),
-                 "p50_ms": round(p50/1e6, 4), "p95_ms": round(p95/1e6, 4)})
+    # 单位：--benchmark_time_unit=ms 时 JSON real_time/cpu_time 单位即为 ms（已用本地
+    # bench JSON 实测确认：Backward FP16 1024/64 mean=45.0758 == 文本 45.1ms），不再缩放
+    rows.append({"benchmark": k, "samples": len(v), "mean_ms": round(sum(v)/len(v), 4),
+                 "p50_ms": round(p50, 4), "p95_ms": round(p95, 4)})
 json.dump(rows, open(f"{res}/cuf_summary.json", "w"), indent=2)
 print(f"configs={len(rows)}; samples/config={[r['samples'] for r in rows][:6]}...")
 PYEOF

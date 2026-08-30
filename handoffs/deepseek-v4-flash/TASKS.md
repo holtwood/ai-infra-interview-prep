@@ -312,6 +312,7 @@ cargo doc --no-deps --locked
 - 证据：各 commit/tag/run/Release URL 见上；本地 runs/2026-08-28/P0-05/
 - 限制：paged-serving 无 release workflow（手动 create，无资产构建）；tiny-llm Release 资产由 workflow 生成；cuflash/triton/cuda-foundations 未打新 tag（无版本变更要求，仅收口提交）；meta 仓历史豁免区被并行改动推上是既有事实（未参与、未回滚）
 - 外部状态：已推送；两旗舰主分支 CI **success**；tiny-llm v2.0.2 与 paged-serving v0.2.1 均 Latest Release（本地→pushed 全链路）
+- review 修复注（2026-08-28，本地未提交）：深度 review 发现并修复——①tiny-llm `include/tiny_llm/ffi.h:10` 注释 env var 名 `PAGED_INFER_TINY_LLM_STRATEGY`→`PAGED_SERVING_TINY_LLM_STRATEGY`（与 paged-serving `src/tiny_llm_executor.rs:50` 一致）；②tiny-llm `.gitignore` 增 `.zcode/`；③paged-serving CHANGELOG [0.2.1] 补 E2 优先级调度条目（a69b146）与 `[0.2.1]:` 链接定义；④PSERV-01 证据补 ABI ORDER/SET MATCH 结论。验证：全工作区 live 无下划线变体残留、clang-format 与 diff --check 通过。**待提交**（需 commit/push 授权）
 - 下一任务：P0-06（组织级复核，GitHub 元数据写入需确认）
 
 ### P0-06 组织级可信度复核
@@ -429,6 +430,7 @@ GPU 测试按仓库清单分文件/过滤器独立执行，并设置
 - 基线：tiny-llm@f9d4b99（TLLM-01 同一构建），RTX 3060 6GB，模型 sha256 74a4da8c…
 - 变更：无源码修改（仅新增 runs/2026-08-28/TLLM-04/ 证据）
 - 验证：曲线 **5 success + 2 failure**（成功点实际 tokens 220/884/3535/7069/14138；TTFT 0.31→58.3s；TPOT 6.3→69.2ms；tok/s 160→14.5；常驻差值 3368-4118MB；失败点：8192 首次 iters=3 超时 300s、16384 E2BIG 参数 147KB>MAX_ARG_STRLEN 128KB，原始 JSON/日志均保留）；**尚未达到真实 OOM 边界**（0.5B KV 非瓶颈，无 OOM 点可记录）；3535-token 正确性抽样正常（prefill 9792ms/24 tokens 无崩溃）
+- 校正注（2026-08-28 review）：16384 E2BIG 失败证据完整（bench_len_16384_fail.log/json/stderr）；**8192 首次超时（rc=124）的原始输出被后续 iters=1 成功运行覆盖**（现 bench_len_8192.json 为成功数据、stderr 0B），唯一证据为会话回显 rc=124——见 runs/2026-08-28/TLLM-04/99_evidence_gap_note.md
 - 证据：runs/2026-08-28/TLLM-04/{bench_len_*.json×5,05_curve.csv,04_correctness_sampling.log,prompts.json,00_summary}
 - 限制：未达 OOM 边界（0.5B KV 非瓶颈）；16K+ 受命令行参数接口限制；数字为单机观测非正式 benchmark；未 push
 - 外部状态：local-only（0 提交）
